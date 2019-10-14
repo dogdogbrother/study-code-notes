@@ -22,9 +22,25 @@ module.exports = {
     sidebar:{
       '/scopeCosuresJS1/': [
         {
-          title: '第一章',
+          title: '第1章.作用域是什么',
           path: '/scopeCosuresJS1/1/'
-        }
+        },
+        {
+          title: '第2章.词法作用域',
+          path: '/scopeCosuresJS1/2/'
+        },
+        {
+          title: '第3章.函数作用域和块作用域',
+          path: '/scopeCosuresJS1/3/'
+        },
+        {
+          title: '第4章.提升',
+          path: '/scopeCosuresJS1/4/'
+        },
+        {
+          title: '第5章.作用域是闭包',
+          path: '/scopeCosuresJS1/5/'
+        },
       ]
     }
   }
