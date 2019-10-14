@@ -153,9 +153,15 @@ export default {
   .left-show{
     top: 0;
   }
+  
   .info-box{
     height: 60vh;
     position: relative;
+    bottom: -60vh;
+    transition: 1s ease;
+  }
+  .right-show{
+    bottom: 0;
   }
   .info{
     height: 100%;
