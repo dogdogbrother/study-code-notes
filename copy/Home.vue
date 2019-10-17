@@ -190,16 +190,6 @@ export default {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
 .img-load{
   display: none;
 }
