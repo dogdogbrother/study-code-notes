@@ -41,6 +41,18 @@ module.exports = {
           title: '第5章.作用域是闭包',
           path: '/scopeCosuresJS1/5/'
         },
+        {
+          title: '第6章.关于this的2个误解',
+          path: '/scopeCosuresJS1/6/'
+        },
+        {
+          title: '第5章.this全面解析',
+          path: '/scopeCosuresJS1/7/'
+        },
+
+      ],
+      "/JavaScriptDesignPatterns/": [
+        
       ]
     }
   }
