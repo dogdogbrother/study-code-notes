@@ -46,8 +46,12 @@ module.exports = {
           path: '/scopeCosuresJS1/6/'
         },
         {
-          title: '第57章.this全面解析',
+          title: '第7章.this全面解析',
           path: '/scopeCosuresJS1/7/'
+        },
+        {
+          title: '第8章.对象',
+          path: '/scopeCosuresJS1/8/'
         },
 
       ],
