@@ -15,6 +15,7 @@ module.exports = {
         text: '《你不知道的JS》',
         items: [
           { text: '上册', link: '/scopeCosuresJS1/' },
+          { text: '中册', link: '/scopeCosuresJS2/' },
         ]
       },
       { text: 'github', link: 'https://github.com/dogdogbrother/study-code-notes'},
@@ -53,10 +54,36 @@ module.exports = {
           title: '第8章.对象',
           path: '/scopeCosuresJS1/8/'
         },
-
+        {
+          title: '第9章.混合对象"类"',
+          path: '/scopeCosuresJS1/9/'
+        },
+        {
+          title: '第10章.原型',
+          path: '/scopeCosuresJS1/10/'
+        },
+        {
+          title: '第10章.行为委托',
+          path: '/scopeCosuresJS1/11/'
+        },
       ],
       "/JavaScriptDesignPatterns/": [
-        
+        {
+          title: '第1章.作用域是什么',
+          path: '/scopeCosuresJS2/1/'
+        },
+        {
+          title: '第1章.作用域是什么',
+          path: '/scopeCosuresJS2/1/'
+        },
+        {
+          title: '第1章.作用域是什么',
+          path: '/scopeCosuresJS2/1/'
+        },
+        {
+          title: '第1章.作用域是什么',
+          path: '/scopeCosuresJS2/1/'
+        },
       ]
     }
   }

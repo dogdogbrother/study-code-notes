@@ -225,7 +225,124 @@ myObject.b; // 4
 ```
 >用过 **VUE** 的人对`defineProperty`这个词很熟悉,这就是 **VUE** 双向绑定的实现原理.
 
-**代码分析:** 
+**代码分析:** 不管是`a`属性还是`b`属性,都是隐性创建的.`get`方法覆盖了对象自身的[[Get]]操作.
+
+再看一段代码:
+```js
+var myObject = { 
+    // 给 a 定义一个 getter
+    get a() {
+        return 2; 
+    } 
+};
+
+myObject.a = 3; 
+myObject.a; // 2
+```
+**代码分析:** 通常来说 `getter` 和 `setter` 是成对出现的,现在没有设置`set`导致我们给`a`赋值的时候`set`操作会忽略赋值操作(所以不会报错).不过即使有合法的`setter`,由于我们自定义的`getter`只会返回2,所以也只会拿到2.
+
+```js
+var myObject = { // 给 a 定义一个 getter 
+    get a() {
+        return this._a_; 
+    },
+    // 给 a 定义一个 setter 
+    set a(val) {
+        this._a_ = val * 2; 
+    } 
+};
+
+myObject.a = 2;
+myObject.a; // 4
+```
+> 属性名 `_a_` 只是一种惯例，没有任何特殊的行为.
+
+### 8. 存在性
+
+`myObject.a`的属性访问返回值可能是`undefined`，但是这个值有可能是属性中存储的`undefined`，也可能是因为属性不存在所以返回`undefined`。那么如何区分 这两种情况呢？
+
+用两种方法的代码举例:
+```js
+var myObject = { 
+    a:2 
+};
+
+("a" in myObject); // true 
+("b" in myObject); // false
+
+myObject.hasOwnProperty( "a" ); // true 
+myObject.hasOwnProperty( "b" ); // false
+```
+`in`操作符会检查属性是否在对象及其 [[Prototype]] 原型链中。相比之下，`hasOwnProperty(..)`只会检查属性是否在`myObject`对象中，不会检查 [[Prototype]] 链。
+
+> 也有例外,通过`Object.create(null)`来创建的对象没有`Object.prototype`,所以会找不到`hasOwnProperty(..)`方法,我们可以使用`Object.prototype.hasOwnProperty.call(myObject,"a")`强行判断.
+
+#### 1. 枚举
+
+`for..in`循环其实就是枚举,但是需要注意的是,不应该在数组中使用`for..in`,因为这种枚举不仅会包含所有数值索引，还会包含所有可枚举属性。
+
+如何区分属性是否可枚举：
+```js
+myObject.propertyIsEnumerable( "b" ); // false
+```
+`propertyIsEnumerable(..)`会检查给定的属性名是否直接存在于对象中（而不是在原型链 上）并且满足`enumerable:true`。
+
+`Object.keys(..)`会返回一个数组，包含所有可枚举属性.
+
+`Object.getOwnPropertyNames(..)`会返回一个数组，包含所有属性，无论它们是否可枚举。
+
+#### 2. 遍历
+
+遍历的方法有很多,上面说了`for in`,还有我们平时常用的`for`循环,`forEach`辅助迭代器等等.
+
+但是这些遍历的方法这实际上并不是在遍历值，而是遍历下标来指向值.
+
+> **如何直接遍历值而不是数组下标（或者对象属性）呢？**  
+`ES6`增加了一种用来遍历数组的`for..of`循环语法（如果对象本身定义了迭代器的话也可以遍历对象）
+
+```js
+var myArray = [ 1, 2, 3 ];
+for (var v of myArray) { 
+    console.log( v ); 
+}
+// 1 
+// 2 
+// 3
+```
+`for..of`循环首先会向被访问对象请求一个迭代器对象，然后通过调用迭代器对象的`next()`方法来遍历所有返回值。
+
+数组有内置的 @@iterator，因此 `for..of` 可以直接应用在数组上。我们使用内置的 @@ iterator 来手动遍历数组，看看它是怎么工作的：
+```js
+var myArray = [ 1, 2, 3 ];
+var it = myArray[Symbol.iterator]();
+it.next(); // { value:1, done:false } 
+it.next(); // { value:2, done:false } 
+it.next(); // { value:3, done:false } 
+it.next(); // { done:true }
+```
+> **Symbol**  
+我们使用 ES6 中的符号`Symbol.iterator`来获取对象的 @@iterator 内部属性
+
+调用迭代器的 `next()` 方法会返回形式为 `{ value: .. , done: .. }` 的值， `value` 是当前的遍历值，`done` 是一个布尔值，表示是否还有可以遍历的值。
+
+和数组不同，普通的对象没有内置的 @@iterator，所以无法自动完成`for..of`遍历。之所以要这样做，有许多非常复杂的原因(简单来说就是js中对象以后可能变得不同,为了避免冲突).
+
+当然，你可以给任何想遍历的对象定义 @@iterator，代码举例：
+```js
+//本来我是想写代码的,但是感觉又有点复杂,虽然for..of配合自定义迭代器很灵活很强大,但是真的需要的时候我再翻书看这里把.
+```
+## 小结
+1. JavaScript 中的对象有字面形式（比如 `var a = { .. }`）和构造形式（比如 `var a = new Array(..)`）。字面形式更常用，不过有时候构造形式可以提供更多选项。
+
+2. 许多人都以为“JavaScript 中万物都是对象”，这是错误的。对象是 6 个（或者是 7 个，取决于你的观点）基础类型之一。对象有包括`function`在内的子类型，不同子类型具有不同的行为，比如内部标签 [object Array] 表示这是对象的子类型数组。
+
+3. 对象就是键 / 值对的集合。可以通过`.propName`或者 ["propName"] 语法来获取属性值。访问属性时，引擎实际上会调用内部的默认 [[Get]] 操作（在设置属性值时是 [[Put]]）， [[Get]] 操作会检查对象本身是否包含这个属性，如果没找到的话还会查找 [[Prototype]] 链
+
+4. 属性的特性可以通过属性描述符来控制，比如`writable`和`configurable`。此外，可以使用 `Object.preventExtensions(..)`、`Object.seal(..)` 和 `Object.freeze(..)` 来设置对象（及其 属性）的不可变性级别。(不变性的内容我没有写,被我忽略了,我感觉没啥大用)
+
+5. 属性不一定包含值——它们可能是具备 getter/setter 的“访问描述符”。此外，属性可以是可枚举或者不可枚举的，这决定了它们是否会出现在`for..in`循环中。
+
+6. 你可以使用 ES6 的 `for..of` 语法来遍历数据结构（数组、对象，等等）中的值，`for..of` 会寻找内置或者自定义的 @@iterator 对象并调用它的 `next()` 方法来遍历数据值。
 
 
 
