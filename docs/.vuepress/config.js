@@ -18,6 +18,10 @@ module.exports = {
           { text: '中册', link: '/scopeCosuresJS2/' },
         ]
       },
+      {
+        text: '建站大攻略',
+        link: '/buildStation/'
+      },
       { text: 'github', link: 'https://github.com/dogdogbrother/study-code-notes'},
     ],
     sidebar:{
@@ -67,6 +71,9 @@ module.exports = {
           path: '/scopeCosuresJS1/11/'
         },
       ],
+      '/scopeCosuresJS2/': [
+
+      ],
       "/JavaScriptDesignPatterns/": [
         {
           title: '第1章.作用域是什么',
@@ -83,6 +90,12 @@ module.exports = {
         {
           title: '第1章.作用域是什么',
           path: '/scopeCosuresJS2/1/'
+        },
+      ],
+      '/buildStation/': [
+        {
+          title: '第1章.准备',
+          path: '/buildStation/1/'
         },
       ]
     }
