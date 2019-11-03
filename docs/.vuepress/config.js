@@ -94,8 +94,16 @@ module.exports = {
       ],
       '/buildStation/': [
         {
-          title: '第1章.准备',
+          title: '第1步.准备',
           path: '/buildStation/1/'
+        },
+        {
+          title: '第2步.武装服务器',
+          path: '/buildStation/2/'
+        },
+        {
+          title: '第3步.运行一个node项目',
+          path: '/buildStation/3/'
         },
       ]
     }
