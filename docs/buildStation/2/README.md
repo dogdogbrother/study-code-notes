@@ -22,7 +22,50 @@ ssh dc2-user@***.***.**.*** //你的ip地址
 
 ## node
 
-前端node必备自然不必说了.接着上面的命令行接着操作把文件下载到你的用户目录下:
+前端node必备自然不必说了.接着上面的命令行接着操作
+
+1. 下载node压缩包到你的用户目录下:
 ```
-wget https://nodejs.org/dist/v12.13.0/node-v12.13.0-linux-x64.tar.xz
+wget https://cdn.npm.taobao.org/dist/node/v12.13.0/node-v12.13.0-linux-x64.tar.xz
 ```
+> 我这个是国内cdn的资源.如果下载失败你也可以去官网查看包的下载地址
+
+2. 解压文件。
+```
+tar xvf node-v12.13.0-linux-x64.tar.xz
+```
+
+3. 创建软链接，使node和npm命令全局有效。通过创建软链接的方法，使得在任意目录下都可以直接使用node和npm命令：
+```
+ln -s /root/node-v12.13.0-linux-x64/bin/node /usr/local/bin/node
+ln -s /root/node-v12.13.0-linux-x64/bin/npm /usr/local/bin/npm
+```
+> 这个地方是有坑的,像腾讯云/阿里云本身就是`root`用户,这样操作是没问题的.但是如果想滴滴云这种,登陆用户是`dc2-user`,这样目录是错的,而且没有权限设置软连接.
+
+4. 查看node、npm版本。
+
+```
+node -v
+npm -v
+```
+
+5. 现在安装pm2
+```
+npm install pm2@latest -g
+```
+
+至此node环境安装完成的差不多了.
+
+## git
+
+1. 安装
+```
+yum install git
+```
+
+2. git的作用
+我认为服务器的git的作用是比本机上的git更有作用,因为他可以利用git托管平台的webhooks进行自动化部署.
+
+
+
+

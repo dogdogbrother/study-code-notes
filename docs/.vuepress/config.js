@@ -76,20 +76,20 @@ module.exports = {
       ],
       "/JavaScriptDesignPatterns/": [
         {
-          title: '第1章.作用域是什么',
-          path: '/scopeCosuresJS2/1/'
+          title: '第1章.高级函数',
+          path: '/JavaScriptDesignPatterns/1/'
         },
         {
-          title: '第1章.作用域是什么',
-          path: '/scopeCosuresJS2/1/'
+          title: '第2章.单例模式',
+          path: '/JavaScriptDesignPatterns/2/'
         },
         {
-          title: '第1章.作用域是什么',
-          path: '/scopeCosuresJS2/1/'
+          title: '第3章.策略模式',
+          path: '/JavaScriptDesignPatterns/3/'
         },
         {
-          title: '第1章.作用域是什么',
-          path: '/scopeCosuresJS2/1/'
+          title: '第4章.作用域是什么',
+          path: '/JavaScriptDesignPatterns/4/'
         },
       ],
       '/buildStation/': [
@@ -104,6 +104,10 @@ module.exports = {
         {
           title: '第3步.运行一个node项目',
           path: '/buildStation/3/'
+        },
+        {
+          title: '第4步.运行一个静态页面',
+          path: '/buildStation/4/'
         },
       ]
     }
