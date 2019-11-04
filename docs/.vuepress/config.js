@@ -109,6 +109,10 @@ module.exports = {
           title: '第4步.运行一个静态页面',
           path: '/buildStation/4/'
         },
+        {
+          title: '第5步.自动部署项目',
+          path: '/buildStation/5/'
+        },
       ]
     }
   }
