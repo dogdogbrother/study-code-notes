@@ -22,7 +22,8 @@ hooks部署流程大致就是,你在git平台的webhooks预留一个请求的api
 
 你在服务器有一个node服务处理这个接口请求,当收到请求的时候,执行shell脚本,你可以执行pull代码,打包,重启服务等等的操作.
 
-1. 点击右上角github头像,设置里面有一个webhooks的选项,因为比较简单,我就不贴图不细说了,必填项都填上就行了.
+1. 点击右上角github头像,设置里面有一个webhooks的选项,比较简单.
+![webhooks](../../public/content-img/webhooks.jpg)
 
 2. 本地服务运行一下.这里我本人的github上有一个[node简易项目](https://github.com/dogdogbrother/web-hooks),是专门服务于webhooks的,大家可以点击进去看两眼,十几行代码而已,非常简单.
 
@@ -52,11 +53,14 @@ const shell = require('shelljs');
 app.post('/blog/hooks',(req,res) =>{
 	shell.exec('cd /var/www/study-code-notes/ && git pull origin master')
 })
+
+app.listen(7999);
 ```
 
-当有人调用'/blog/hooks'接口的时候,我们就利用`shelljs`工具来执行进入目录并执行拉取代码的操作.`/blog/hooks`就是你在github的setting中设置的.
+当有人调用`ip:7999/blog/hooks`接口的时候,我们就利用`shelljs`工具来执行进入目录并执行拉取代码的操作.`/blog/hooks`就是你在github的setting中设置的.
 
 > 当然你可以让自动部署更智能一些,例如你在webhooks中设置只有在master分支发生merge时间的时候才发送post请求.这样你平时dev环境开发,当你自己测过没有问题的话,在合并到主分支,线上就自动更新了.
-你还可以把打包这个动作写在shell脚本里,这样你本地更轻了.`shell.exec('... && npm run build')`
+你还可以把打包这个动作写在shell脚本里,这样你本地更轻了.`shell.exec('... && npm run build')`.  
+你还可以写一个webhooks,服务于这个node服务,就是当提交了代码后自己拉自己,重启pm2.  
 
 这里温馨提示下,注意你的node版本,如果是webpack4而你的node小于10.0的话有可能会打包失败.
