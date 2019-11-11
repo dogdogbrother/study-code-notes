@@ -18,9 +18,28 @@ npm create-next-app
 npx create-next-app my-next-app
 ```
 nextjs自带服务器，但是它只是用来处理渲染内容，无法处理服务器，所以我们还要用koa来做后端，next只是用来中间件作用。
-3. 安装koa先，然后根目录下创建一个server.js文件
+3. 安装koa先，然后根目录下创建一个server.js文件,内容如下
 ```js
+const Koa = require('koa')
+const next = require('next')
 
+const dev = process.env.NODE_ENV !== 'production'
+const app = next({ dev })
+const handle = app.getRequestHandler()
+
+app.prepare().then(()=>{
+    const server = new Koa()
+
+    server.use(async (ctx,next) => {
+        await handle(ctx.req, ctx.res)
+        ctx.response = false
+    })
+
+    server.listen(3000, () => {
+        console.log('koa已启动,端口3000');
+    })
+    
+})
 ```
 4. 添加pakes.json中的script命令,
 ```json
@@ -28,7 +47,8 @@ nextjs自带服务器，但是它只是用来处理渲染内容，无法处理�
 ```
 5. `npm run dev`启动测试,没有问题.我们看到了脚手架工具默认的页面展示.
 
->与vue的cli,react的creat-react-app等脚手架工具不同的是,create-next-app做的事是很少的,我们其实完全可以不通过脚手架来初始化一个next项目.
+>与vue的cli,react的creat-react-app等脚手架工具不同的是,create-next-app做的事是很少的,我们其实完全可以不通过脚手架来初始化一个next项目.  
+还有一点奇怪的是,我们并没有定义路由信息,但是当我们访问根路径的时候却能访问到,这个是因为pages文件本身的层级关系就是路由信息
 
 ## 手动安装next项目
 ```
