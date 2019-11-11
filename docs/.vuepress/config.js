@@ -19,8 +19,12 @@ module.exports = {
         ]
       },
       {
-        text: '建站大攻略',
+        text: '建站小攻略',
         link: '/buildStation/'
+      },
+      {
+        text: '服务端渲染nextJS',
+        link: '/nextjs/'
       },
       { text: 'github', link: 'https://github.com/dogdogbrother/study-code-notes'},
     ],
@@ -88,8 +92,20 @@ module.exports = {
           path: '/JavaScriptDesignPatterns/3/'
         },
         {
-          title: '第4章.作用域是什么',
+          title: '第4章.代理模式',
           path: '/JavaScriptDesignPatterns/4/'
+        },
+        {
+          title: '第5章.迭代器模式',
+          path: '/JavaScriptDesignPatterns/5/'
+        },
+        {
+          title: '第6章.发布订阅模式',
+          path: '/JavaScriptDesignPatterns/6/'
+        },
+        {
+          title: '第7章.命令模式',
+          path: '/JavaScriptDesignPatterns/7/'
         },
       ],
       '/buildStation/': [
@@ -112,6 +128,20 @@ module.exports = {
         {
           title: '第5步.自动部署项目',
           path: '/buildStation/5/'
+        },
+        {
+          title: '第6步.MongoDB数据库',
+          path: '/buildStation/6/'
+        },
+        {
+          title: '总结',
+          path: '/buildStation/7/'
+        },
+      ],
+      '/nextjs/': [
+        {
+          title: '第1步.认识nextjs',
+          path: '/nextjs/1/'
         },
       ]
     }
