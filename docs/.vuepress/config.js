@@ -76,7 +76,14 @@ module.exports = {
         },
       ],
       '/scopeCosuresJS2/': [
-
+        {
+          title: '第1章.类型',
+          path: '/scopeCosuresJS2/1/'
+        },
+        {
+          title: '第2章.值',
+          path: '/scopeCosuresJS2/2/'
+        },
       ],
       "/JavaScriptDesignPatterns/": [
         {
