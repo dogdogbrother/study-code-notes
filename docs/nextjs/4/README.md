@@ -61,13 +61,13 @@ link形式的代码如下:
 router形式的代码如下:
 ```js
 const gotoTestA = () => {
-        Router.push({
-            pathname:'/a',
-            query: {
-                id: 2
-            }
-        })
-    }
+    Router.push({
+        pathname:'/a',
+        query: {
+            id: 2
+        }
+    })
+}
 ```
 页面取参的方法和react hooks一模一样,用withRouter包装一层把参数当props传进去.
 ```js
@@ -78,3 +78,76 @@ const A = ({ router }) => <span>A,{router.query.id}</span>
 export default withRouter(A)
 ```
 ## 路由映射
+除了query的形式外,我们也会遇到这种形式的路由参数:`/a/1`.
+
+这种的使用方案代码如下,link形式:
+```js
+<Link href="/a?id=1" as="/a/1"></Link>
+```
+js router形式:
+```js
+const gotoTestA = () => {
+    Router.push({
+        pathname:'/a',
+        query: {
+            id: 2
+        }
+    },'/test/b/2')
+}
+```
+取参的时候和上面的一样,`router.query.id`就行.
+
+我们测试一下,没问题,ok.但是我们刷新页面就不行了,404了,正常我SPA项目我们通常都是线上环境Nginx配置,运行环境脚手架搭好了.
+
+这里我们要利用koa自己手动配置一下.server.js更改内容如下:
+```js
+const Koa = require('koa')
+const next = require('next')
+const Router = require('koa-router')
+
+const dev = process.env.NODE_ENV !== 'production'
+const app = next({ dev })
+const handle = app.getRequestHandler()
+
+app.prepare().then(()=>{
+    const server = new Koa()
+    const router = new Router()
+
+    router.get('/a/:id', async (ctx) => {
+        const id = ctx.params.id
+        await handle(ctx.req, ctx.res, {
+            pathname: '/a',
+            query: { id }
+        })
+        ctx.respond = false
+    })
+
+    server.use(router.routers())
+
+    server.use(async (ctx,next) => {
+        await handle(ctx.req, ctx.res)
+        ctx.response = false
+    })
+
+    server.listen(3000, () => {
+        console.log('koa已启动,端口3000');
+    })
+    
+})
+```
+再次测试,刷新.没问题.
+
+## 路由钩子
+路由钩子事件一共有6个.
+```js
+const events = [
+  'routeChangeStart',
+  'routeChangeComplete',
+  'routeChnageError',
+  'beforeHistoryChange',
+  'hashChangeStart',
+  'hashChangeComplete'
+]
+```
+这个就是正常的路由钩子函数,没什么好说的.
+

@@ -178,6 +178,14 @@ module.exports = {
           title: '第4章.nextjs中的路由',
           path: '/nextjs/4/'
         },
+        {
+          title: '第5章.getInitialProps数据获取',
+          path: '/nextjs/5/'
+        },
+        {
+          title: '第5章.nextjs自定义App',
+          path: '/nextjs/6/'
+        },
       ]
     }
   }
