@@ -163,8 +163,20 @@ module.exports = {
       ],
       '/nextjs/': [
         {
-          title: '第1步.认识nextjs',
+          title: '第1章.认识nextjs',
           path: '/nextjs/1/'
+        },
+        {
+          title: '第2章.认识redis',
+          path: '/nextjs/2/'
+        },
+        {
+          title: '第3章.nextjs集成antd',
+          path: '/nextjs/3/'
+        },
+        {
+          title: '第4章.nextjs中的路由',
+          path: '/nextjs/4/'
         },
       ]
     }

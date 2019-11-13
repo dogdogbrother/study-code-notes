@@ -48,25 +48,3 @@ await redis.get('b') // 123
 await redis.setex('c',10,123) //10不是毫秒,是秒
 ```
 这样我们在十秒内查询c是能找到123的,10秒后就找不到了.
-
-## 集成antd
-react的antd和vue的element是我们大家非常熟悉得了,但是nextjs中使用antd有几个问题.
-### 1. css问题
-nextjs默认不支持css文件的.`import '../test.css'`这样会报错.
-
-这个问题是因为nextjs中其实是有`css in js`的方案的,所以他并不支持css导入.
-
-如果你一定要这样写可以吗?也可以.
-
-安装`@zeit/next-css`
-
-在根目录下创建一个`next.config.js`文件,用来修改next的默认配置.代码如下:
-```js
-const withCss = require('@zeit/next-css')
-if(typeof require !== 'undefined') {
-    require.extensions['.css'] = file => {}
-}
-module.exports = withCss({})
-```
-再次执行测试,ok,没问题
-### 2. 分模块加载组件
