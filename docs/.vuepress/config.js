@@ -84,6 +84,22 @@ module.exports = {
           title: '第2章.值',
           path: '/scopeCosuresJS2/2/'
         },
+        {
+          title: '第3章.原生函数',
+          path: '/scopeCosuresJS2/3/'
+        },
+        {
+          title: '第4章.强制类型转换',
+          path: '/scopeCosuresJS2/4/'
+        },
+        {
+          title: '第5章.语法',
+          path: '/scopeCosuresJS2/5/'
+        },
+        {
+          title: '第6章.异步',
+          path: '/scopeCosuresJS2/6/'
+        },
       ],
       "/JavaScriptDesignPatterns/": [
         {
