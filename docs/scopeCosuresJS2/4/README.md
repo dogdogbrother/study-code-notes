@@ -80,7 +80,7 @@ JSON.stringify( a, function(k,v){
 
 ES5中定义了抽象操作`ToNumber`。
 
-其中 `true` 转换为 `1，false` 转换为 `0。undefined` 转换为 `NaN`，`null` 转换为 0。
+其中 `true` 转换为 1，`false` 转换为 0。`undefined` 转换为 `NaN`，`null` 转换为 0。
 
 
 
