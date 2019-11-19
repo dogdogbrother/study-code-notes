@@ -57,7 +57,7 @@ npm i --save react react-dom next koa
 ```
 我们在根目录下建立一个新的文件夹pages,里面放上一个index.js,内容导出一个标签.
 ```js
-export default () +> <span>index页面</span>
+export default () => <span>index页面</span>
 ```
 运行`npm run dev`就能看到这个页面了,是不是非常的轻量.
 >这个地方引发个思考,我们可以查看network,请求的html文件中就包含了`<span>index页面</span>`内容,这与以往我们开发的vue和react都是不一样的,页面内容不是由js注入的.  

@@ -183,8 +183,16 @@ module.exports = {
           path: '/nextjs/5/'
         },
         {
-          title: '第5章.nextjs自定义App',
+          title: '第6章.nextjs自定义App',
           path: '/nextjs/6/'
+        },
+        {
+          title: '第6章.nextjs自定义Document',
+          path: '/nextjs/8/'
+        },
+        {
+          title: '第6章.引入Rudex',
+          path: '/nextjs/9/'
         },
       ]
     }
