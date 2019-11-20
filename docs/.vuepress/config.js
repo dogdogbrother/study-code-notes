@@ -187,7 +187,7 @@ module.exports = {
           path: '/nextjs/5/'
         },
         {
-          title: '第5章.nextjs自定义App',
+          title: '第6章.nextjs自定义App',
           path: '/nextjs/6/'
         },
       ],
