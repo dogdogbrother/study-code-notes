@@ -268,6 +268,64 @@ foo( void 0, 7 ); // 42 7
 foo( null ); // null 1
 ```
 
+## try..finally
+`try..catch`是比较常用的,但是其实也可以使用`try..finally`,就是不管结局如何都会执行finally内容.
+
+## switch
+现在来简单介绍一下 switch，可以把它看作 if..else if..else.. 的简化版本：
+```js
+switch (a) {
+ case 2:
+ // 执行一些代码
+ break;
+ case 42:
+ // 执行另外一些代码
+ break;
+ default:
+ // 执行缺省代码
+}
+```
+这看似并无特别之处，但其中存在一些不太为人所知的陷阱。
+
+a 和 case 表达式的匹配算法与 `===` 相同,如果我们不知道a到底是`'1'`还是`1`的情况下,我们可以如下使用:
+```js
+var a = "42";
+switch (true) {
+  case a == 10:
+    console.log( "10 or '10'" );
+    break;
+  case a == 42;
+    console.log( "42 or '42'" );
+    break;
+  default:
+ // 永远执行不到这里
+}
+// 42 or '42'
+```
+需要注意的是,case后面跟的比较是true或者false,而不能是真值,例如1和0这种的.
+
+default 是可选的，并非必不可少,而且不一定非要在最后面,break 相关规则对 default 仍然适用：
+```js
+var a = 10;
+switch (a) {
+  case 1:
+  case 2:
+  // 永远执行不到这里
+  default:
+    console.log( "default" );
+  case 3:
+    console.log( "3" );
+    break;
+  case 4:
+    console.log( "4" );
+}
+// default
+// 3
+```
+**代码分析:** 首先全部执行了一遍,发现没有合适的,就default,但是没有break,就又走了case 3,然后结束.
+
+
+
 
 
 

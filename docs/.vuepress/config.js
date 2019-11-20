@@ -8,6 +8,10 @@ module.exports = {
   themeConfig: {
     nav: [
       {
+        text: 'CSS揭秘',
+        link: '/cssSecret/'
+      },
+      {
         text: '《JavaScript设计模式与开发实践》',
         link: '/JavaScriptDesignPatterns/'
       },
@@ -185,6 +189,16 @@ module.exports = {
         {
           title: '第5章.nextjs自定义App',
           path: '/nextjs/6/'
+        },
+      ],
+      '/cssSecret/': [
+        {
+          title: '第1章.背景与边框',
+          path: '/cssSecret/1/'
+        },
+        {
+          title: '第1章.形状',
+          path: '/cssSecret/2/'
         },
       ]
     }
