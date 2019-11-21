@@ -33,7 +33,9 @@ let sidebar = {
       title: '第1章.形状'
     },
   ],
+  // 前端
   '/front_note/webpack4/': require('./catalog/webpack4'),
+  '/front_note/TypeScript-axios/': require('./catalog/TypeScript-axios'),
 }
 
 for(let key  in sidebar){

@@ -1,4 +1,4 @@
-![JavaScript设计模式与实战.jpg](../public/cover-img/2.jpg#coverimg)
+![JavaScript设计模式与实战.jpg](../../public/cover-img/2.jpg#coverimg)
 
 >**读之前随便说点**  
 很可惜,在写这电子书之前我已经写了这本书的差不多2/5的笔记,都放到了我的github上,我花点时候都转过来,并把剩下的章节补齐.  
