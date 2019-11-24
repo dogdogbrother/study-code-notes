@@ -154,3 +154,32 @@ let someValue: any = 'this is a string'
 let strLength: number = (someValue as string).length
 ```
 >两种形式是等价的,推荐 `as` 语法,JSX只支持`as`
+
+## 扩展
+TS中的枚举在js中是怎么实现的呢?我们先看下ts的代码:
+```js
+enum Color {Red = 1, Green = 3, Blue} // Blue其实就是4了
+let c: Color = Color.Green
+console.log(c)
+```
+编译后再看下js代码:
+```js
+var Color;
+(function (Color) {
+    Color[Color["Red"] = 1] = "Red";
+    Color[Color["Green"] = 3] = "Green";
+    Color[Color["Blue"] = 4] = "Blue";
+})(Color || (Color = {})); // Blue其实就是4了
+var c = Color.Green;
+console.log(c);
+```
+**代码分析:**
+`[Color["Red"] = 1]`是个不好理解的语法,但是我们可以尝试打印下`Color`对象里面都有什么值:
+```js
+{ '1': 'Red', '3': 'Green', '4': 'Blue', Red: 1, Green: 3, Blue: 4 }
+```
+恍然大悟`Color["Red"] = 1`其实是有个结果值的(1),所以其实是有2个赋值操作的,等同于:
+```js
+Color["Red"] = 1
+Color[1] = "Red";
+```

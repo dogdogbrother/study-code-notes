@@ -7,6 +7,10 @@ module.exports = [
     children: [
       { title: '基础类型' },
       { title: '变量声明' },
+      { title: '接口' },
+      { title: '类' },
+      { title: '函数' },
+      { title: '泛型' },
     ]
   }
 ]
