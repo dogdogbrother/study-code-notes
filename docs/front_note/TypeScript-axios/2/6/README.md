@@ -68,3 +68,29 @@ console.log(myGenericNumber.add(1, 3)) // 输出 4. 不能是非number
 ```ts
 new GenericNumber<string>() // 修改此处即可
 ```
+
+## 泛型约束
+> 这个有可能是我理解错误的地方,后续我如果发现的确是错的,我再改.
+
+我们在上面 **泛型变量** 的举例中说明了,如果是最基础的泛型的话,使用`arg.length`会报错的,我们当时的解决方案是`T[]`,告诉ts泛型变量是数组.然而除了数组,字符串也有`length`属性,对象中我们也可以定义`length`属性,那么我们如何更灵活的对 **泛型进行约束** 呢?
+
+>事实上我认为原文中案例不是很贴切,其实就是想说属性值的问题罢了..
+
+我们定义一个接口来描述约束条件，创建一个包含 `.length` 属性的接口，使用这个接口和 `extends` 关键字来实现约束：
+```ts
+interface Lengthwise {
+  length: number
+}
+
+function loggingIdentity<T extends Lengthwise>(arg: T): T {
+  console.log(arg.length) // OK
+  return arg
+}
+```
+我们测试下效果:
+```ts
+loggingIdentity(3)  // Error
+loggingIdentity([1,2]) // ok
+loggingIdentity({length: 10, value: 3}) // ok
+loggingIdentity('') // ok
+```

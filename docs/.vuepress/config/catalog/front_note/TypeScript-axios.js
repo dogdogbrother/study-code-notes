@@ -11,6 +11,16 @@ module.exports = [
       { title: '类' },
       { title: '函数' },
       { title: '泛型' },
+      { title: '类型推断' },
+      { title: '高级类型' },
+    ]
+  },
+  {
+    title: '3. ts-axios 项目初始化',
+    children: [
+      { title: '需求分析' },
+      { title: '初始化项目' },
+      { title: '编写基础请求代码' },
     ]
   }
 ]
