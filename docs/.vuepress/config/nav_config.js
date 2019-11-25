@@ -11,6 +11,7 @@ module.exports = [
   {
     text: '前端学习',
     items: [
+      { text: '前端基础', link: '/front_note/basics-knowledge/' },
       { text: 'webpack4', link: '/front_note/webpack4/' },
       { text: 'TypeScript-axios', link: '/front_note/TypeScript-axios/' },
       { text: 'react-hooks', link: '/front_note/react-hooks/' },
@@ -24,7 +25,7 @@ module.exports = [
     ]
   },
   {
-    text: '其他平台',
+    text: '跨平台',
     items: [
       { text: 'flutter', link: '/cross_platform/flutter/' },
       { text: 'electron', link: '/cross_platform/electron/' },

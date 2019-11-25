@@ -1,7 +1,7 @@
 
 
 module.exports = {
-  title: '读书笔记',
+  title: 'blog',
   description: '森林看过啥都记录下',
   evergreen: true,
   markdown: {
