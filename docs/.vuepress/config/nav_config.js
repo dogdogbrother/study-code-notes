@@ -13,6 +13,7 @@ module.exports = [
     items: [
       { text: 'webpack4', link: '/front_note/webpack4/' },
       { text: 'TypeScript-axios', link: '/front_note/TypeScript-axios/' },
+      { text: 'react-hooks', link: '/front_note/react-hooks/' },
     ]
   },
   {
@@ -20,6 +21,13 @@ module.exports = [
     items: [
       { text: '建站小攻略', link: '/buildStation/' },
       { text: 'nextJS', link: '/nextjs/' },
+    ]
+  },
+  {
+    text: '其他平台',
+    items: [
+      { text: 'flutter', link: '/cross_platform/flutter/' },
+      { text: 'electron', link: '/cross_platform/electron/' },
     ]
   },
   { text: 'github', link: 'https://github.com/dogdogbrother/study-code-notes'},

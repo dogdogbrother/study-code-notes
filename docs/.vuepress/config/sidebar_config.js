@@ -1,8 +1,8 @@
 let sidebar = {
   // 电子书
-  '/book_note/scopeCosuresJS1/': require('./catalog/scopeCosuresJS1'),
-  '/book_note/scopeCosuresJS2/': require('./catalog/scopeCosuresJS2'),
-  "/book_note/JavaScriptDesignPatterns/": require('./catalog/JavaScriptDesignPatterns'),
+  '/book_note/scopeCosuresJS1/': require('./catalog/book_note/scopeCosuresJS1'),
+  '/book_note/scopeCosuresJS2/': require('./catalog/book_note/scopeCosuresJS2'),
+  "/book_note/JavaScriptDesignPatterns/": require('./catalog/book_note/JavaScriptDesignPatterns'),
   // 后端
   '/buildStation/': require('./catalog/buildStation'),
   '/nextjs/': [
@@ -34,8 +34,12 @@ let sidebar = {
     },
   ],
   // 前端
-  '/front_note/webpack4/': require('./catalog/webpack4'),
-  '/front_note/TypeScript-axios/': require('./catalog/TypeScript-axios'),
+  '/front_note/webpack4/': require('./catalog/front_note/webpack4'),
+  '/front_note/TypeScript-axios/': require('./catalog/front_note/TypeScript-axios'),
+  '/front_note/react-hooks/': require('./catalog/front_note/react-hooks'),
+  // 跨平台
+  '/cross_platform/flutter/': require('./catalog/cross_platform/flutter'),
+  '/cross_platform/electron/': require('./catalog/cross_platform/electron')
 }
 
 for(let key  in sidebar){
