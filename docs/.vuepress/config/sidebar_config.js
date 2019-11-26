@@ -40,7 +40,9 @@ let sidebar = {
   '/front_note/react-hooks/': require('./catalog/front_note/react-hooks'),
   // 跨平台
   '/cross_platform/flutter/': require('./catalog/cross_platform/flutter'),
-  '/cross_platform/electron/': require('./catalog/cross_platform/electron')
+  '/cross_platform/electron/': require('./catalog/cross_platform/electron'),
+  // 计算机基础
+  '/computer_basic/markdown/': require('./catalog/computer_basic/markdown'),
 }
 
 for(let key  in sidebar){

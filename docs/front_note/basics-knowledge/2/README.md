@@ -207,3 +207,82 @@ Array.isArray(a);   //true
 ***
 >**ES6的数组方法**
 
+## Array.from()
+用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括 ES6 新增的数据结构 Set 和 Map）。
+```js
+let arrayLike = {
+    '0': 'a',
+    '1': 'b',
+    '2': 'c',
+    length: 3
+};
+let arr2 = Array.from(arrayLike); // ['a', 'b', 'c']
+```
+Array.from还可以接受第二个参数，作用类似于数组的map方法，用来对每个元素进行处理，将处理后的值放入返回的数组。
+```js
+Array.from([1, 2, 3], (x) => x * x)
+// [1, 4, 9]
+```
+
+## Array.of()
+用于将一组值，转换为数组.
+```js
+Array.of(3, 11, 8) // [3,11,8]
+```
+
+## copyWithin()
+```js
+array.copyWithin(target, start = 0, end = this.length);
+```
+参数|说明|
+--|:--:|
+target|必需。从该位置开始替换数据。如果为负值，表示倒数。|
+start|可选，从该位置开始读取数据，默认为 0。如果为负值，表示倒数.|
+end|可选，到该位置前停止读取数据，默认等于数组长度。如果为负值，表示倒数.|
+```js
+// 将3号位复制到0号位
+[1, 2, 3, 4, 5].copyWithin(0, 3, 4)
+// [4, 2, 3, 4, 5]
+```
+
+## fill()
+用于将一个固定值替换数组的元素。
+```js
+array.fill(value, start, end)
+```
+参数|说明|
+--|:--:|
+value|必需。填充的值。|
+start|可选，开始填充位置.|
+end|可选，停止填充位置 (默认为 array.length).|
+```js
+// 填充 "Runoob" 到数组的最后两个元素：
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.fill("Runoob", 2, 4);
+// 输出结果 Banana,Orange,Runoob,Runoob
+```
+## includes()
+用来判断一个数组是否包含一个指定的值，如果是返回 true，否则false。
+```js
+arr.includes(searchElement, fromIndex)
+```
+参数|说明|
+--|:--:|
+searchElement|必需。需要查找的元素值。|
+start|可选，从该索引处开始查找 searchElement。如果为负值，则按升序从 array.length + fromIndex 的索引开始搜索。默认为 0.|
+```js
+var arr = ['a', 'b', 'c'];
+ 
+arr.includes('c', 3);   //false 如果是 2 的话就是true
+```
+>这个地方我原来一直用错了,我一直以为includes的参数是回调函数..
+
+## entries()，keys() 和 values()
+用来遍历数组。它们都返回一个遍历器对象，可以用`for...of`循环进行遍历，唯一的区别是`keys()`是对数组的键名的遍历、`values()`是对数组键值的遍历，`entries()`方法是对数值的键值对的遍历。
+```js
+let letter = ['a', 'b', 'c'];
+let entries = letter.entries();
+console.log(entries.next().value); // [0, 'a']
+console.log(entries.next().value); // [1, 'b']
+console.log(entries.next().value); // [2, 'c']
+```

@@ -9,6 +9,12 @@ module.exports = [
     ]
   },
   {
+    text: '计算机基础',
+    items: [
+      { text: 'Markdown', link: '/computer_basic/markdown/' },
+    ]
+  },
+  {
     text: '前端学习',
     items: [
       { text: '前端基础', link: '/front_note/basics-knowledge/' },
