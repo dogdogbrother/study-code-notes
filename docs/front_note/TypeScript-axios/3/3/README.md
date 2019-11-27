@@ -125,3 +125,226 @@ export default axios
 ```
 
 其中，`webpack` 是打包构建工具，`webpack-dev-middleware` 和 `webpack-hot-middleware` 是 2 个 `express` 的 `webpack` 中间件，`ts-loader` 和 `tslint-loader` 是 `webpack` 需要的 TypeScript 相关 loader，`express` 是 Node.js 的服务端框架，`body-parser` 是 `express` 的一个中间件，解析 `body` 数据用的。
+
+### 编写 webpack 配置文件
+
+在 `examples` 目录下创建 `webpack` 配置文件 `webpack.config.js`：
+
+```javascript
+const fs = require('fs')
+const path = require('path')
+const webpack = require('webpack')
+
+module.exports = {
+  mode: 'development',
+
+  /**
+   * 我们会在 examples 目录下建多个子目录
+   * 我们会把不同章节的 demo 放到不同的子目录中
+   * 每个子目录的下会创建一个 app.ts
+   * app.ts 作为 webpack 构建的入口文件
+   * entries 收集了多目录个入口文件，并且每个入口还引入了一个用于热更新的文件
+   * entries 是一个对象，key 为目录名
+   */
+  entry: fs.readdirSync(__dirname).reduce((entries, dir) => {
+    const fullDir = path.join(__dirname, dir)
+    const entry = path.join(fullDir, 'app.ts')
+    if (fs.statSync(fullDir).isDirectory() && fs.existsSync(entry)) {
+      entries[dir] = ['webpack-hot-middleware/client', entry]
+    }
+
+    return entries
+  }, {}),
+
+  /**
+   * 根据不同的目录名称，打包生成目标 js，名称和目录名一致
+   */
+  output: {
+    path: path.join(__dirname, '__build__'),
+    filename: '[name].js',
+    publicPath: '/__build__/'
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        enforce: 'pre',
+        use: [
+          {
+            loader: 'tslint-loader'
+          }
+        ]
+      },
+      {
+        test: /\.tsx?$/,
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true
+            }
+          }
+        ]
+      }
+    ]
+  },
+
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js']
+  },
+
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
+  ]
+}
+```
+
+### 编写 server 文件
+
+在 `examples` 目录下创建 `server.js` 文件：
+
+```javascript
+const express = require('express')
+const bodyParser = require('body-parser')
+const webpack = require('webpack')
+const webpackDevMiddleware = require('webpack-dev-middleware')
+const webpackHotMiddleware = require('webpack-hot-middleware')
+const WebpackConfig = require('./webpack.config')
+
+const app = express()
+const compiler = webpack(WebpackConfig)
+
+app.use(webpackDevMiddleware(compiler, {
+  publicPath: '/__build__/',
+  stats: {
+    colors: true,
+    chunks: false
+  }
+}))
+
+app.use(webpackHotMiddleware(compiler))
+
+app.use(express.static(__dirname))
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+
+const port = process.env.PORT || 8080
+module.exports = app.listen(port, () => {
+  console.log(`Server listening on http://localhost:${port}, Ctrl+C to stop`)
+})
+```
+
+### 编写 demo 代码
+
+首先在 `examples` 目录下创建 `index.html` 和 `global.css`，作为所有 `demo` 的入口文件已全局样式文件。
+
+`index.html`：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>ts-axios examples</title>
+    <link rel="stylesheet" href="/global.css">
+  </head>
+  <body style="padding: 0 20px">
+    <h1>ts-axios examples</h1>
+    <ul>
+      <li><a href="simple">Simple</a></li>
+    </ul>
+  </body>
+</html>
+```
+
+`global.css`：
+
+```css
+html, body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  color: #2c3e50;
+}
+
+ul {
+  line-height: 1.5em;
+  padding-left: 1.5em;
+}
+
+a {
+  color: #7f8c8d;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #4fc08d;
+}
+```
+
+然后在 `examples` 目录下创建 `simple` 目录，作为本章节的 demo 目录，在该目录下再创建 `index.html` 和 `app.ts` 文件
+
+`index.html` 文件如下:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Simple example</title>
+  </head>
+  <body>
+    <script src="/__build__/simple.js"></script>
+  </body>
+</html>
+```
+
+`app.ts` 文件如下：
+
+```typescript
+import axios from '../../src/index'
+
+axios({
+  method: 'get',
+  url: '/simple/get',
+  params: {
+    a: 1,
+    b: 2
+  }
+})
+```
+
+因为我们这里通过 `axios` 发送了请求，那么我们的 server 端要实现对应的路由接口，我们来修改 `server.js`，添加如下代码：
+
+```javascript
+const router = express.Router()
+
+router.get('/simple/get', function(req, res) {
+  res.json({
+    msg: `hello world`
+  })
+})
+
+app.use(router)
+```
+
+### 运行 demo
+
+接着我们在 `package.json` 中去新增一个 `npm script`：
+
+```
+"dev": "node examples/server.js"
+```
+
+然后我们去控制台执行命令
+
+```bash
+npm run dev
+```
+
+相当于执行了 `node examples/server.js`，会开启我们的 server。
+
+接着我们打开 chrome 浏览器，访问 `http://localhost:8080/` 即可访问我们的 demo 了，我们点到 `Simple` 目录下，通过开发者工具的 network 部分我们可以看到成功发送到了一条请求，并在 response 中看到了服务端返回的数据。
+
+至此，我们就实现了一个简单的请求发送，并编写了相关的 demo。但是现在存在一些问题：我们传入的 `params` 数据并没有用，也没有拼接到 `url` 上；我们对 request body 的数据格式、请求头 headers 也没有做处理；另外我们虽然从网络层面收到了响应的数据，但是我们代码层面也并没有对响应的数据做处理。那么下面一章，我们就来解决这些问题。

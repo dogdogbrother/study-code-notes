@@ -22,5 +22,14 @@ module.exports = [
       { title: '初始化项目' },
       { title: '编写基础请求代码' },
     ]
+  },
+  {
+    title: '4. ts-axios 基础功能实现',
+    children: [
+      { title: '处理请求 url 参数' },
+      { title: '处理请求 body 数据' },
+      { title: '处理请求 header' },
+      { title: '获取响应数据' },
+    ]
   }
 ]
