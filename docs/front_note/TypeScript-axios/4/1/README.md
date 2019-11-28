@@ -157,7 +157,7 @@ export function bulidURL (url: string, params?: any) {
     // 声明一个 string 数组
 
     if (Array.isArray(val)) {
-      // Array.isArray 是es6(还是es5的我忘了)的方法,判断这个值是不是数组
+      // Array.isArray es5的方法,判断这个值是不是数组
       values = val
       // 如果是的话 给key值上加个标识,为啥这么干可以翻阅下前面的需求
       key += '[]'
@@ -222,27 +222,33 @@ export function isObject (val: any): val is Object {
 
 我们已经实现了 `buildURL` 函数，接下来我们来利用它实现 `url` 参数的处理逻辑。
 
-在 `index.ts` 文件中添加如下代码：
+在 `index.ts` 文件中添加代码后如下：
 
 ```typescript
-function axios (config: AxiosRequestConfig): void {
+import { AxiosRequestConfig } from './types'
+import xhr from './xhr'
+import { bulidURL } from './helpers/url'
+
+function axios(config: AxiosRequestConfig): void {
+  // 我们在使用axios是的参数是 config,我们先要处理一下
   processConfig(config)
   xhr(config)
 }
 
 function processConfig (config: AxiosRequestConfig): void {
+  // 把参数处理一下后覆盖掉参数的url,处理了什么呢? 
+  // 这个函数只是做了个简单的中转为什么还要单独起一个函数呢,我猜想后面会有别的操作.
   config.url = transformUrl(config)
 }
 
 function transformUrl (config: AxiosRequestConfig): string {
-  const { url, params } = config
+  const { url, params } = config 
+  // 我们通过结构赋值拿到url和参数对象,通过 bulidURL 函数对url的拼接得到新的url
   return bulidURL(url, params)
 }
+
+export default axios
 ```
-
-在执行 `xhr` 函数前，我们先执行 `processConfig` 方法，对 `config` 中的数据做处理，除了对 `url` 和 `params` 处理之外，未来还会处理其它属性。
-
-在 `processConfig` 函数内部，我们通过执行 `transformUrl` 函数修改了 `config.url`，该函数内部调用了 `buildURL`。
 
 那么至此，我们对 `url` 参数处理逻辑就实现完了，接下来我们就开始编写 demo 了。
 
@@ -264,7 +270,7 @@ function transformUrl (config: AxiosRequestConfig): string {
 ```
 
 接着创建 `app.ts` 作为入口文件：
-
+>这里面有很多的请求,其实都是为了测试我们的拼接url字符串是否是正确的
 ```typescript
 import axios from '../../src/index'
 
@@ -337,6 +343,7 @@ router.get('/base/get', function(req, res) {
   res.json(req.query)
 })
 ```
+>别忘了在入口的html文件加上`<li><a href="base">base</a></li>`
 
 然后在命令行运行 `npm run dev`，接着打开 chrome 浏览器，访问 `http://localhost:8080/` 即可访问我们的 demo 了，我们点到 `Base` 目录下，通过开发者工具的 network 部分我们可以看到成功发送的多条请求，并可以观察它们最终请求的 url，已经如期添加了请求参数。
 
@@ -348,3 +355,13 @@ router.get('/base/get', function(req, res) {
 我在开发个人项目的时候也需要一个明确的需求分析啊,要不然写着写着容易返工,最后写崩了就得重构.一个拼接url的小需求就有这么多种边界处理动作,可见如果真的是比较复杂的业务场景,需要考虑的点就更多了.
 
 * encodeURIComponent 函数
+encodeURIComponent是挂载在全局window下的函数方法,可把字符串作为 URI 组件进行编码.这里是[菜鸡教程的说明](https://www.runoob.com/jsref/jsref-encodeuricomponent.html)
+
+* Array.isArray([1])
+ES5新增的方法,判断一个变量是不是数组,返回布尔值.[菜鸡教程](https://www.runoob.com/jsref/jsref-isarray.html)
+
+* 判断是否为时间格式的方法
+`toString.call(val) === '[object Date]'`
+Date是对象的子类型,其实数组,Undefined等等都是可以用这个办法来判断的.
+`toString.call([]) === "[object Array]"`
+* process 意思是 **加工/处理/审核**
