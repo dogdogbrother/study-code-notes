@@ -4,6 +4,7 @@ module.exports = [
     items: [
       { text: '你不知道的JS(上)', link: '/book_note/scopeCosuresJS1/' },
       { text: '你不知道的JS(中)', link: '/book_note/scopeCosuresJS2/' },
+      { text: '你不知道的JS(下)', link: '/book_note/scopeCosuresJS3/' },
       { text: 'JS设计模式与开发实践', link: '/book_note/JavaScriptDesignPatterns/' },
       { text: 'CSS揭秘', link: '/cssSecret/' },
     ]
@@ -12,6 +13,7 @@ module.exports = [
     text: '计算机基础',
     items: [
       { text: 'Markdown', link: '/computer_basic/markdown/' },
+      { text: 'leetcode解题', link: '/computer_basic/recording-leet-code/' }
     ]
   },
   {

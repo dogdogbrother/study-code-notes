@@ -43,6 +43,7 @@ let sidebar = {
   '/cross_platform/electron/': require('./catalog/cross_platform/electron'),
   // 计算机基础
   '/computer_basic/markdown/': require('./catalog/computer_basic/markdown'),
+  '/computer_basic/recording-leet-code/': require('./catalog/computer_basic/recording-leet-code'),
 }
 
 for(let key  in sidebar){

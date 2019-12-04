@@ -1,0 +1,3 @@
+## 理论上讲题目肯定是从编号开始解起，但是因为我买了慕课的js课程，就跟着课程的解题进度走吧，简单的就不写了，有点难度的记录下。
+
+## 还是推荐在[jsbin](https://jsbin.com/yajuyewesi/edit?html,js,output)上跑一遍
