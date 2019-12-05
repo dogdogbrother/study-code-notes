@@ -30,6 +30,15 @@ module.exports = [
       { title: '处理请求 body 数据' },
       { title: '处理请求 header' },
       { title: '获取响应数据' },
+      { title: '处理响应 header' },
+      { title: '处理响应 data' },
+    ]
+  },
+  {
+    title: '5. ts-axios 异常情况处理',
+    children: [
+      { title: '错误处理' },
+      { title: '错误信息增强' }
     ]
   }
 ]
