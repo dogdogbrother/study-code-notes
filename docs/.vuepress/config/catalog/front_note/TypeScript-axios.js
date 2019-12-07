@@ -40,5 +40,13 @@ module.exports = [
       { title: '错误处理' },
       { title: '错误信息增强' }
     ]
+  },
+  {
+    title: '6. ts-axios 接口扩展',
+    children: [
+      { title: '接口扩展' },
+      { title: 'axios 函数重载' },
+      { title: '响应数据支持泛型' }
+    ]
   }
 ]
