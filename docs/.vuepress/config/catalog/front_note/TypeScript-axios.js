@@ -48,5 +48,13 @@ module.exports = [
       { title: 'axios 函数重载' },
       { title: '响应数据支持泛型' }
     ]
+  },
+  {
+    title: '6. ts-axios 拦截器实现',
+    children: [
+      { title: '拦截器设计与实现' },
+      { title: 'axios 函数重载' },
+      { title: '响应数据支持泛型' }
+    ]
   }
 ]
