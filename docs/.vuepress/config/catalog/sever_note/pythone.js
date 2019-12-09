@@ -1,6 +1,6 @@
 module.exports = [
   {
-    title: '第1章.介绍electron'
+    title: 'python的安装和Hello World'
   },
   {
     title: '第2章.介绍electron'
