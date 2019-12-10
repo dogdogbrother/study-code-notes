@@ -1,11 +1,17 @@
 module.exports = [
   {
-    title: '第1章.css',
+    title: 'css',
   },
   {
-    title: '第2章.Array 数组',
+    title: 'Array 数组',
   },
   {
-    title: '第2章.Object 对象',
-  }
+    title: 'Object 对象',
+  },
+  {
+    title: 'string 字符串',
+  },
+  {
+    title: 'number 数字',
+  },
 ]
