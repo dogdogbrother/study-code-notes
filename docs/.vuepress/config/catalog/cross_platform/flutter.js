@@ -7,7 +7,8 @@ module.exports = [
       { title: '控制语句' },
       { title: '方法' },
       { title: '面向对象,上' },
-      { title: '面向对象,下' }
+      { title: '面向对象,下' },
+      { title: '枚举&泛型' },
     ]
   },
   {
