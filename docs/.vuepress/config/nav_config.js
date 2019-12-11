@@ -30,7 +30,7 @@ module.exports = [
     items: [
       { text: '建站小攻略', link: '/buildStation/' },
       { text: 'nextJS', link: '/nextjs/' },
-      { text: 'python', link: '/sever_note/python' },
+      { text: 'python', link: '/sever_note/python/' },
     ]
   },
   {

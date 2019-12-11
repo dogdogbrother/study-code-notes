@@ -5,6 +5,7 @@ let sidebar = {
   "/book_note/JavaScriptDesignPatterns/": require('./catalog/book_note/JavaScriptDesignPatterns'),
   // 后端
   '/buildStation/': require('./catalog/buildStation'),
+  '/sever_note/python/': require('./catalog/sever_note/python'),
   '/nextjs/': [
     {
       title: '第1章.认识nextjs'
