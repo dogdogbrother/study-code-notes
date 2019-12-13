@@ -8,6 +8,7 @@ module.exports = [
       { title: '分支/循环/条件/枚举' },
       { title: '包/模块/函数' },
       { title: '面向对象' },
+      { title: '正则和JSON' },
     ]
   },
 ]

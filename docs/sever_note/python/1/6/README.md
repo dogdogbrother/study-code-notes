@@ -38,3 +38,18 @@ print(student.name) # 输出senlin
 又一个问题来了,`student._Student_name = 'gou'`可以吗?可以..
 
 写python要看自觉啊
+
+## 继承
+直接说结果,python中的继承不是通过`extends`关键字,而是通过把父级类当参数传进去,如果子类没有构造函数,会默认调用父类构造函数.
+
+如果子类有构造函数就忽略父类构造函数,如果也想继承父类构造函数,可以在`__init__`中使用`super()`.
+```py
+class Human():
+    pass
+
+class Student(Human):
+    def __init__(self,school,name,age):
+        self.school = school
+        super(Student,self).__init__(name,age)
+```
+`super`不仅仅可以调用构造函数,父类的普通函数也可以拿来用.
