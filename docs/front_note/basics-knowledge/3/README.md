@@ -28,7 +28,8 @@ const person = {
   name: '妖怪',
 };
 const me = Object.create(person);
-// me 和 person 是一样的了,但是又相互不影响
+console.log(me) // {}
+console.log(me.__proto__) // { name: '妖怪' }
 ```
 除了最简单的复制创建一个对象的功能外,还可以实现类式继承.举个简单的例子:
 ```js
