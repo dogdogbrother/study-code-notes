@@ -6,6 +6,7 @@ let sidebar = {
   // 后端
   '/buildStation/': require('./catalog/buildStation'),
   '/sever_note/python/': require('./catalog/sever_note/python'),
+  '/sever_note/koa2/': require('./catalog/sever_note/koa2'),
   '/nextjs/': [
     {
       title: '第1章.认识nextjs'
@@ -45,6 +46,8 @@ let sidebar = {
   // 计算机基础
   '/computer_basic/markdown/': require('./catalog/computer_basic/markdown'),
   '/computer_basic/recording-leet-code/': require('./catalog/computer_basic/recording-leet-code'),
+  // 杂项
+  '/miscellaneous/Axure/': require('./catalog/miscellaneous/Axure'),
 }
 
 for(let key  in sidebar){

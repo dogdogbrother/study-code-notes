@@ -31,6 +31,7 @@ module.exports = [
       { text: '建站小攻略', link: '/buildStation/' },
       { text: 'nextJS', link: '/nextjs/' },
       { text: 'python', link: '/sever_note/python/' },
+      { text: 'koa2', link: '/sever_note/koa2/' },
     ]
   },
   {
@@ -38,6 +39,12 @@ module.exports = [
     items: [
       { text: 'flutter', link: '/cross_platform/flutter/' },
       { text: 'electron', link: '/cross_platform/electron/' },
+    ]
+  },
+  {
+    text: '杂',
+    items: [
+      { text: 'Axure', link: '/miscellaneous/Axure/' },
     ]
   },
   { text: 'github', link: 'https://github.com/dogdogbrother/study-code-notes'},
