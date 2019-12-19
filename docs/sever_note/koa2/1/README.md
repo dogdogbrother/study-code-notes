@@ -1,5 +1,5 @@
 
-技术选型概述.
+## 技术选型概述.
 
 node基本就是express,koa2,egg三种了.
 express比较老了,在逻辑处理上用的回调函数的形式.
@@ -8,19 +8,17 @@ egg是阿里对koa2的再次封装.
 
 鉴于是学习的角度,我们使用koa2,自己会做一些封装达到类似于egg的功能.
 
-数据库mysql,不用mongodb
+数据库mysql
 
-登录session,不用jwt
+登录session
 
-前端ejs后端模板引擎,不用vue/react
+前端ejs后端模板引擎t
 
 缓存redis,没有对手
 
 单元测试jest,也基本没有对手.
-## git commit单词
-feat:路由演示. 添加功能
 
-# 安装
+## 安装
 ```sh
 npm i -g koa-generator 
 koa2 -e koa2-weibo-code

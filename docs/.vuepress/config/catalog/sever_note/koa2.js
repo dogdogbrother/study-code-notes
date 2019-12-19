@@ -1,8 +1,11 @@
 module.exports = [
   {
-    title: 'koa2sa',
+    title: '微博项目',
     children: [
-      { title: 'python的安装和Hello World' },
+      { title: '前言/准备/搭架子' },
+      { title: 'ejs' },
+      { title: 'mysql' },
+      { title: 'sequelize' },
     ]
   }
 ]
