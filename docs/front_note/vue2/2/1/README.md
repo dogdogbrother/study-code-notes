@@ -1,0 +1,1 @@
+# 组件的通信 1：provide / inject

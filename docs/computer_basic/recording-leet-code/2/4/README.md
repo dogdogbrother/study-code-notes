@@ -127,3 +127,50 @@ var convert = function(s, numRows) {
 console.log(convert('123456789',4))
 ```
 
+## 官方解题
+不仅我说秀,评论区全是秀声一片.
+
+1. 首先定义一个数组,长度是`numRows`,当然如果`s`小于`numRows`就等于`s`的长度.与之对应的是一个index,值的范围是0到数组的长度.
+
+2. 再定义个布尔值goingDown,默认false,当为true的时候+1,false的时候-1
+
+举例`12345678`和4,数组里面有四个`''`.通过循环s,和goingDown配合不停往这四个字符串里面add值,最后合并这四个字符串即可.
+```js
+//第一次循环
+['1','','','']
+// 因为index值等于0,于是乎goingDown变成true,index+1,也就导致了第2.3.4次循环
+['1','2','3','4']
+// index等于4的时候index满足条件,goingDown变成false,于是乎idnex-1了!!!(又循环了3次)
+['17','26','35','4']
+//因为上次循环index===0,又满足了添加,变成了正序,index+1
+['17','268','35','4']
+```
+结果为**17268354**是正确的,怎么说呢,是很精妙,但是我的感觉有点过于取巧了,着实没什么用.
+
+***
+
+```js
+/**
+ * @param {string} s
+ * @param {number} numRows
+ * @return {string}
+ */
+var convert = function(s, numRows) {
+  if (numRows == 1) return s;
+  let curRow = 0;
+  let goingDown = false;
+  let rows = []
+  for(var i=0; i<Math.min(numRows,s.length); i++){
+    rows[i] = ''
+  }
+  for(var i=0; i<s.length; i++){
+    rows[curRow] += s[i]
+    if (curRow == 0 || curRow == (numRows - 1)) {
+      goingDown = !goingDown;
+    }
+    curRow += goingDown ? 1 : -1;
+  }
+  return rows.join('')
+}
+console.log(convert('12345678',4))
+```

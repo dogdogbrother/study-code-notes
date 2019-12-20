@@ -40,6 +40,7 @@ let sidebar = {
   '/front_note/webpack4/': require('./catalog/front_note/webpack4'),
   '/front_note/TypeScript-axios/': require('./catalog/front_note/TypeScript-axios'),
   '/front_note/react-hooks/': require('./catalog/front_note/react-hooks'),
+  '/front_note/vue2/': require('./catalog/front_note/vue2'),
   // 跨平台
   '/cross_platform/flutter/': require('./catalog/cross_platform/flutter'),
   '/cross_platform/electron/': require('./catalog/cross_platform/electron'),

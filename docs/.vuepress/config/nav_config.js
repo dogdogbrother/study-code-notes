@@ -23,6 +23,7 @@ module.exports = [
       { text: 'webpack4', link: '/front_note/webpack4/' },
       { text: 'TypeScript-axios', link: '/front_note/TypeScript-axios/' },
       { text: 'react-hooks', link: '/front_note/react-hooks/' },
+      { text: 'vue2+', link: '/front_note/vue2/' },
     ]
   },
   {
