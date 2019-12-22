@@ -11,7 +11,7 @@ module.exports = [
     title: '组件精讲',
     children: [
       { title: '组件通讯provide和inject' },
-      // { title: '依赖收集追踪原理' },
+      { title: '组件通讯之派发与广播' },
       // { title: '实现Virtual DOM下的VNode' },
     ]
   }

@@ -47,6 +47,7 @@ let sidebar = {
   // 计算机基础
   '/computer_basic/markdown/': require('./catalog/computer_basic/markdown'),
   '/computer_basic/recording-leet-code/': require('./catalog/computer_basic/recording-leet-code'),
+  '/computer_basic/groceries/': require('./catalog/computer_basic/groceries'),
   // 杂项
   '/miscellaneous/Axure/': require('./catalog/miscellaneous/Axure'),
 }
