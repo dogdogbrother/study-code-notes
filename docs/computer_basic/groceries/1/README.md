@@ -16,7 +16,7 @@ emiji|代码|commit说明
 :art:调色板|`:art:`|改进代码结构/代码格式
 :zap:闪电|`:zap:`|提升性能
 :racehorse:赛马|`:racehorse:`|提升性能
-:fire:火焰|`:fire:`|提升性能
+:fire:火焰|`:fire:`|移除代码或文件
 :bug:bug|`:bug:`|修复 bug
 :ambulance:急救车|`:ambulance:`|重要补丁
 :sparkles:火花|`:sparkles:`|引入新功能
@@ -28,3 +28,8 @@ emiji|代码|commit说明
 :bookmark:书签|`:bookmark:`|发行/版本标签
 :hammer:锤子|`:hammer:`|重大重构
 :wrench:扳手|`:wrench:`|修改配置文件
+
+## 杂项
+我们在开发一个新功能的时候最好在本地新建一个分支去开发,这个新分支的名字最好也是语义化的.例如
+
+* 如果是开发登录页面,分支名为 **feature-login**
