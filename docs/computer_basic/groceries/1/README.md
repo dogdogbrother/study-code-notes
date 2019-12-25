@@ -7,6 +7,8 @@ ProxyCommand "D:\codetools\Git\mingw64\bin\connect.exe" -H 127.0.0.1:7078 %h %p
 ```
 路径指的是git安装的地址,-H是说明走的http代理,127.0.0.1是本机,7078是翻墙软件代理的端口.
 
+>除了-H 还有-S,指的socks5
+
 测试下就会发现从每秒5kb的下载量变成了10MB..
 
 ## git emoji

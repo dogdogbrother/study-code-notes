@@ -12,7 +12,8 @@ module.exports = [
     title: '知乎项目',
     children: [
       { title: '前言/架子/路由' },
-      // { title: 'ejs' },
+      { title: 'HTTP参数和响应' },
+      { title: '错误处理' },
       // { title: 'mysql' },
       // { title: 'sequelize' },
     ]
