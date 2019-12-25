@@ -13,6 +13,8 @@ module.exports = [
       { title: '组件通讯provide和inject' },
       { title: '组件通讯之派发与广播' },
       { title: '实现具有校验功能的表单' },
+      { title: '组件的通信' },
+      { title: '组合多选框组件' },
     ]
   }
 ]
