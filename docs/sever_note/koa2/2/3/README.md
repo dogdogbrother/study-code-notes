@@ -1,4 +1,4 @@
-# 错误处理
+# 错误处理和参数校验
 
 ## koa-json-error
 
@@ -49,9 +49,21 @@ app.use(error({
 ```json
 {
     "script":{
-        "dev": "NODE_ENV=dev nodemon app",
+        "dev": "nodemon app",
         "start": "NODE_ENV=production app"
     }
 }
 ```
 但是在Windows电脑中这么写是会报错的,所以我们可以使用一个比较好用的插件: **cross-env**
+```sh
+npm i cross-env --save-dev
+```
+然后是script中的命令使用就ok了.
+```json
+{
+    "dev": "cross-env NODE_ENV=dev nodemon app",
+}
+```
+
+>原视频教程是这么写的,但是我觉得有点奇怪.我们其实是应该监听当前环境是否是dev,根据布尔给予响应的操作.  
+不过不伤大雅,暂时先这样吧.
