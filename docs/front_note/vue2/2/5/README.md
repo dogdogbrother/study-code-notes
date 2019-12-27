@@ -98,11 +98,14 @@ export default {
     };
   },
   methods: {
-    change () {
+    change (event) {
       if (this.disabled) {
         return false;
       }
-      this.$emit('input', value);
+      const checked = event.target.checked;
+      this.currentValue = checked;
+
+      this.$emit('input', this.currentValue);
     }
   }
 }
@@ -117,6 +120,17 @@ export default {
 组件内部怎么处理?稍稍有点难度,课程里的解决方案还是挺巧的,直接看代码吧:
 ```js
 export default {
+  methods: {
+      change (event) {
+        // ...
+        const checked = event.target.checked;
+        this.currentValue = checked;
+        const value = checked ? this.trueValue : this.falseValue;
+        // 暴露给外面的值还是配置的值
+        this.$emit('input', value);
+        // ...
+      }
+  },
   watch: {
     value (val) {
       if (val === this.trueValue || val === this.falseValue) {
@@ -156,20 +170,25 @@ export default {
 >其实没啥用,因为你还没再form表单页面定义...  
 不过也没办法定义,因为单个的 checkbox 是没有校验规则的..
 
-## CheckboxGroup
+## CheckboxGroup 下的 Checkbox
 
-CheckboxGroup 的 API 很简单：
+**CheckboxGroup 的 API 很简单：**
 
 * props：value，与 Checkbox 的类似，用于 v-model 双向绑定数据，格式为数组；
 * events：on-change，同 Checkbox；
 * slots：默认，用于放置 Checkbox。
 
-Checkbox 有什么变动呢?
+**Checkbox 有什么变动呢?**
 
 * Checkbox 要通过上一节的 `findComponentUpward` 方法判断父组件中是否有 CheckboxGroup.
 * Checkbox 要把自身的 label 值 push 到 CheckboxGroup 中.
 
-## 判断是不是 CheckboxGroup
+**交互上有什么不同呢?**
+
+* Checkbox 是否勾选不能通过简单的改变一个值 true/false ,而是 Group 数组中是否包含了相应的label.
+* change 时的校验和返回值要根据是否为 Group 做不同的派发
+
+### 判断是不是 CheckboxGroup
 ```js
 import { findComponentUpward } from '../../utils/assist.js';
 
@@ -198,7 +217,7 @@ export default {
 }
 ```
 
-## group下的 checkbox 需要兼容 label
+### group下的 checkbox 需要兼容 label
 
 html 结构,data 和 prop 都要有些改变
 
@@ -243,5 +262,78 @@ export default {
 }
 </script>
 ```
+>model 就是 CheckboxGroup 的 value,`v-model`的写法是 vue 封装的语法糖,详情请看[官网](https://cn.vuejs.org/v2/guide/forms.html#%E5%A4%8D%E9%80%89%E6%A1%86)
 
+## CheckboxGroup
 
+CheckboxGroup 的 API 很简单：
+
+* props：value，与 Checkbox 的类似，用于 v-model 双向绑定数据，格式为数组；
+* events：on-change，同 Checkbox；
+* slots：默认，用于放置 Checkbox。
+
+### 全部代码如下
+```html
+<template>
+  <div>
+    <slot></slot>
+  </div>
+</template>
+
+<script>
+import { findComponentsDownward } from '../../utils/assist.js';
+import Emitter from '../../mixins/emitter.js';
+
+export default {
+  name: 'iCheckboxGroup',
+  mixins: [ Emitter ],
+  props: {
+    value: {
+      type: Array,
+      default () {
+        return [];
+      }
+    }
+  },
+  data () {
+    return {
+      currentValue: this.value,
+      childrens: []
+    }
+  },
+  methods: {
+    updateModel (update) {
+      this.childrens = findComponentsDownward(this, 'iCheckbox');
+      // 通过前面章节定义的方法找到全部的子级 Checkbox
+      if (this.childrens) {
+        // 假如能找到
+        const { value } = this;
+        // 拿到自身的 value ,也就是装着 label 的数组
+        this.childrens.forEach(child => {
+          child.model = value;
+          // 遍历每个 Checkbox ,并给他们的 v-model 的值绑定全部的选中值
+          if (update) {
+            child.currentValue = value.indexOf(child.label) >= 0;
+            // 这个 currentValue 的值对应的是 checkbox 原生 true/false ,也要去通过 include 去赋值
+            child.group = true;
+          }
+        });
+      }
+    },
+    change (data) {
+      this.currentValue = data;
+      this.$emit('input', data);
+      this.$emit('on-change', data);
+      this.dispatch('iFormItem', 'on-form-change', data);
+    }
+  },
+  watch: {
+    value () {
+      this.updateModel(true);
+    }
+  }
+}
+</script>
+```
+## 完结测试
+正常操作和校验是否数组为空都是没问题的.应该是OK了.

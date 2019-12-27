@@ -15,6 +15,7 @@ module.exports = [
       { title: '实现具有校验功能的表单' },
       { title: '组件的通信' },
       { title: '组合多选框组件' },
+      { title: 'Vue 的构造器,extend/$mount' },
     ]
   }
 ]
