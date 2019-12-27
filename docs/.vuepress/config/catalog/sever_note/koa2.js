@@ -17,6 +17,7 @@ module.exports = [
       { title: '参数校验 koa-parameter' },
       { title: 'Mongoose链接MongoDB' },
       { title: 'JWT 实现认证与授权' },
+      { title: '上传图片' },
     ]
   }
 ]
