@@ -35,3 +35,79 @@ emiji|代码|commit说明
 我们在开发一个新功能的时候最好在本地新建一个分支去开发,这个新分支的名字最好也是语义化的.例如
 
 * 如果是开发登录页面,分支名为 **feature-login**
+
+## git时候指定仓库名
+```sh
+git clone https://github.com/rengwuxian/git-practice.git 你想要的仓库名
+```
+
+## 新建分支
+你想在当前 `commit` 处创建一个叫做 "feature1" 的 `branch`,然后切换该分支
+```sh
+git branch feature1
+git checkout feature1
+```
+当然,这两步骤可以结合一下:
+```sh
+git checkout -b feature1
+```
+很明显 `-b` 就是 branch 的配置.
+
+## 删除分支
+```sh
+git branch -d feature1
+git push origin -d books // 删除远程仓库的分支
+```
+这样的操作有可能会失败,出于安全考虑，没有被合并到 master 过的 branch 在删除时会失败（因为怕你误删掉「未完成」的 branch 啊）,如果你确认是要删除的话,使用 **-D** 就行了.
+
+## 关于 git push
+假如你在 master 分支下,你可以直接执行 `git push`,git会把你当前 master 推到线上的 master,其他分支不操作.
+
+但是,如果有一个分支不是通过 clone 或者 pull 下来的,你要 push 的话,就要加上 `origin 分支名` 才行.
+
+当然,你可以通过 `git config` 指令来设置 `push.default` 的值来改变 push 的行为逻辑，例如可以设置为「所有分支都可以用 git push 来直接 push，目标自动指向 origin 仓库的同名分支」（对应的 `push.default` 值：`current`）.
+
+## 冲突
+当你 git pull发现了冲突,而且因为操作不当导致冲突非常非常多,你就后悔 pull 了,怎么能取消这次**冲突merge**呢?
+
+当 Git 仓库处于冲突待解决的中间状态时,可以执行一次 `merge --abort` 来手动取消 merge.
+
+## 查看一个commit中的一个文件的改动
+```sh
+git show 5e68b0d8 shopping\ list.txt
+```
+
+## rebase 解决 merge 的分叉
+>rebase 翻译过来是 **变基** 的意思.(改变基处点的意思??)
+merge分叉是什么意思呢,假如master分支上有12,然后我们分出一个dev,我们先在 master 开发了2个 commit 34,又在 dev 上开发了2个 commit 56.
+
+这个时候如果我 merge 了 dev 分支,master分支上就会多出一个 commit,也就是7.
+
+此时,commit7 就是所谓的 **merge分叉**,因为这个时候不管你是在 master分支 下,还是在 dev分支 下,commit7 的内容是一样的.就是说commit7其实是2个分支共同拥有的.
+
+这样的分支处理其实是没问题的,但是有个体验上的缺点,如果你现在是 master 的 commit7 上,你想查看 dev 上的 commit5 改动信息,你就要切到 dev 上去查看.
+
+rebase 的作用就能避免这个缺点,所有的 commit 节点信息都会在一个分支下.
+
+```sh
+git checkout dev
+git rebase master
+```
+此时你的 dev 分支下变成了基于 master 分支上添加了 78 两个commit 节点,这 78 对应的就是之前的 56.也就是说现在的dev 分支上是 123478,而 56 则丢失了.
+
+当然你现在的 master 分支上还是 1234,这时候再次 merge dev分支下即可,master 的 HEAD 就指向了最近的 commit8 了. 
+```sh
+git checkout master
+git merge dev
+```
+>需要注意的是 commit 节点丢失的问题,所以千万不要在 master 分支上操作对其他分支 rebase 操作啊.
+
+## 发觉有错误代码怎么办.
+
+能怎么办,最简单粗暴的方法就是再次 add + commit 呗.不过可以用`commit --amend`来更优雅的处理.
+```sh
+git add new.js
+git commit --amend
+```
+这样你上次的 commit 的记录就不见了,`commit --amend`会生成一个新的 commit 节点来代替最新一次的 commit 节点记录.
+
