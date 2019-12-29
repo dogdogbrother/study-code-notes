@@ -18,6 +18,9 @@ module.exports = [
       { title: 'Mongoose链接MongoDB' },
       { title: 'JWT 实现认证与授权' },
       { title: '上传图片' },
+      { title: '个人资料模块' },
+      { title: '关注与粉丝' },
+      { title: '话题模块' },
     ]
   }
 ]

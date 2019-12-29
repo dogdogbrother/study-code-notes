@@ -67,7 +67,7 @@ class UsersCtl {
         if(!user) { ctx.throw(404, '用户不存在,无法更新') }
         ctx.body = user;
     }
-    async findById(ctx) {
+    async deleteById(ctx) {
         // 删除用户
         const user = await User.findByIdAndRemove(ctx.params.id)
         if(!user) { ctx.throw(404, '用户不存在,无法删除') }
