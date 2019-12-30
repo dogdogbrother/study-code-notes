@@ -1,6 +1,6 @@
 module.exports = [
   {
-    title: '第1章.Dart',
+    title: 'Dart',
     children: [
       { title: '数据类型' },
       { title: '算数运算符' },
@@ -12,9 +12,9 @@ module.exports = [
     ]
   },
   {
-    title: '第2章.介绍fullter'
+    title: 'flutter基础Widget'
   },
-  {
-    title: '第3章.介绍fullter'
-  },
+  // {
+  //   title: '第3章.介绍fullter'
+  // },
 ]

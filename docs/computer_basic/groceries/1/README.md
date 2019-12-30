@@ -111,3 +111,11 @@ git commit --amend
 ```
 这样你上次的 commit 的记录就不见了,`commit --amend`会生成一个新的 commit 节点来代替最新一次的 commit 节点记录.
 
+## stash隐藏文件
+举个例子,当你在 dev 分支去写新功能,同事突然让你去 master 分支改个东西,这个时候你是没有办法直接 checkout 到主分支的.但是你又不想 commit 一次残疾提交,就可以用`git stash`.
+
+我日常开发的时候经常会出现因为文件有改动,不能`git pull`的情况,就是因为没有使用`stash`的原因.
+
+`git stash` 的作用就是把你改动过的文件全部隐藏起来,`git stash pop` 再显示出来.
+
+不过需要注意的是,从未 track 的文件,也就是没有被跟踪过的文件(例如你新建的一个文件),是不会被 stash 起来的,需要加上 -u 参数,意思是`--include-untracked` 的简写.
