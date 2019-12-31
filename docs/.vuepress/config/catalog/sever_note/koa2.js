@@ -21,6 +21,8 @@ module.exports = [
       { title: '个人资料模块' },
       { title: '关注与粉丝' },
       { title: '话题模块' },
+      { title: '问题模块' },
+      { title: '答案模块' },
     ]
   }
 ]
