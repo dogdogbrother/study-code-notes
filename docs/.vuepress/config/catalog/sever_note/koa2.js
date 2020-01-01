@@ -20,9 +20,9 @@ module.exports = [
       { title: '上传图片' },
       { title: '个人资料模块' },
       { title: '关注与粉丝' },
-      { title: '话题模块' },
-      { title: '问题模块' },
-      { title: '答案模块' },
+      { title: '话题模块与日期' },
+      { title: '问题与答案模块' },
+      { title: '模块' },
     ]
   }
 ]
