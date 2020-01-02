@@ -14,7 +14,8 @@ module.exports = [
     items: [
       { text: 'Markdown', link: '/computer_basic/markdown/' },
       { text: 'leetcode解题', link: '/computer_basic/recording-leet-code/' },
-      { text: '日常问题杂事', link: '/computer_basic/groceries/' }
+      { text: '日常问题杂事', link: '/computer_basic/groceries/' },
+      { text: '计算机基础', link: '/computer_basic/basic/' },
     ]
   },
   {

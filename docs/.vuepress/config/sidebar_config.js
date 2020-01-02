@@ -50,6 +50,7 @@ let sidebar = {
   '/computer_basic/markdown/': require('./catalog/computer_basic/markdown'),
   '/computer_basic/recording-leet-code/': require('./catalog/computer_basic/recording-leet-code'),
   '/computer_basic/groceries/': require('./catalog/computer_basic/groceries'),
+  '/computer_basic/basic/': require('./catalog/computer_basic/basic'),
   // 杂项
   '/miscellaneous/Axure/': require('./catalog/miscellaneous/Axure'),
 }
