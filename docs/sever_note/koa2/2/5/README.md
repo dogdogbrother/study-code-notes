@@ -6,12 +6,12 @@ MongoDB 是非关联型数据库
 
 ## 安装引入和使用连接MongoDB
 ```sh
-npm i Mongoose --save
+npm i mongoose --save
 ```
 ```js
 const mongoose = require('mongoose')
 
-mongoose.connect('你的MongoDB地址', { useNewUrlParser: true } () => { console.log('MongoDB已经连接') })
+mongoose.connect('你的MongoDB地址', { useNewUrlParser: true }, () => { console.log('MongoDB已经连接') })
 mongoose.connection.on('error', console.error)
 ```
 

@@ -6,7 +6,7 @@
 
 先安装引用和注册:
 ```sh
-npm -i koa-json-error --save
+npm i koa-json-error --save
 ```
 ```js
 const error = require("koa-json-error")

@@ -22,7 +22,7 @@ module.exports = [
       { title: '关注与粉丝' },
       { title: '话题模块与日期' },
       { title: '问题与答案模块' },
-      { title: '模块' },
+      { title: '其他的一些杂事' },
     ]
   }
 ]
