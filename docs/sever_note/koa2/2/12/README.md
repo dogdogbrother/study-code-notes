@@ -26,6 +26,8 @@ show dbs
 
 7. 最后我要删除music数据库,重新写后端程序了.先切换到`music`库下,然后执行`db.dropDatabase()`即可.
 
+8. 删除集合,假如我要删除`music`下的`users`集合,就先切换到`music`库下,`db.users.drop()`.如果返回true就是删除成功了.
+
 ## mongoose
 
 在定义 Schema 的时候有一个默认添加 _v 的字段,是版本号的意思,可以在创建表的时候给关闭了.
@@ -33,6 +35,24 @@ show dbs
 var mySchema = new mongoose.Schema({
     username:  'string'
 }, {versionKey: false}
+```
+
+### 查询到的对象不能修改
+因为查询到的内容不是普通的object,而是mongoose通过schema封装来了,可以通过`lean`选项来控制返回的是否为普通的object.
+```js
+await Plaza.find({}, null, { lean:true })
+```
+
+### 查询符合数组中的条件
+举例说我有个数组`arr = [1, 2, 3]`,我想查询的数据中主要包含了`1,2,3`就返回,可以使用`$in`语法.
+```js
+await Comment.find({ id: {$in:arr} })
+```
+
+### 查询collection集合中的数据总数
+本来是用`.connect()`方法,但是会报错`DeprecationWarning: collection.count is deprecated, and will be removed in a future version. Use Collection.countDocuments or Collection.estimatedDocumentCount instead`,改用`countDocuments`就好了.
+```js
+await Comment.find({ id: id }).countDocuments()
 ```
 
 
