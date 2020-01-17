@@ -27,6 +27,7 @@ let sidebar = {
       title: '第6章.nextjs自定义App'
     },
   ],
+  '/sever_note/ssr/': require('./catalog/sever_note/ssr'),
   '/sever_note/nginx/': require('./catalog/sever_note/nginx'),
   // 
   '/cssSecret/': [

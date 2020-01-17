@@ -33,6 +33,7 @@ module.exports = [
     items: [
       { text: '建站小攻略', link: '/buildStation/' },
       { text: 'nextJS', link: '/nextjs/' },
+      { text: 'ssr原理与实践', link: '/sever_note/ssr/' },
       { text: 'python', link: '/sever_note/python/' },
       { text: 'koa2', link: '/sever_note/koa2/' },
       { text: 'Nginx', link: '/sever_note/nginx/' },
