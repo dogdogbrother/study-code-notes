@@ -139,3 +139,135 @@ bindClick(button1,MenuBar.refresh);
 bindClick(button2,subMenu.add);
 bindClick(button3,subMenu.del);
 ```
+**命令模式的由来，其实是回调函数的一个面向对象的代替品。**
+
+## 撤销命令
+假如我们有一个需求是让一个小球向右移动200px，如果我们想让他回归原始的位置，当然可以输入-200px。但是更优雅的方法是增加一个撤销按钮，点击该按钮，撤销本次移动，回归上次的位置。
+
+先写一个原始的小球移动的案例。
+```html
+<body>
+  <div id="ball" style="position:absolute;background:#000;width:50px;height:50px"></div>
+    输入小球移动后的位置：<input id="pos"/>
+  <button id="moveBtn">开始移动</button>
+</body>
+<script>
+  var ball = document.getElementById( 'ball' );
+  var pos = document.getElementById( 'pos' );
+  var moveBtn = document.getElementById( 'moveBtn' );
+  moveBtn.onclick = function(){
+  var animate = new Animate( ball );
+  // Animate 是我们前面章节写的一个动画类
+  animate.start( 'left', pos.value, 1000, 'strongEaseOut' );
+  };
+</script> 
+```
+
+然后我们用命令模式去改造下：
+```js
+var ball = document.getElementById( 'ball' );
+var pos = document.getElementById( 'pos' );
+var moveBtn = document.getElementById( 'moveBtn' );
+var MoveCommand = function( receiver, pos ){
+  this.receiver = receiver;
+  this.pos = pos;
+};
+MoveCommand.prototype.execute = function(){
+  this.receiver.start( 'left', this.pos, 1000, 'strongEaseOut' );
+};
+var moveCommand;
+moveBtn.onclick = function(){
+  var animate = new Animate( ball );
+  moveCommand = new MoveCommand( animate, pos.value );
+  moveCommand.execute();
+}; 
+```
+接下来增加撤销按钮：
+```html
+<button id="cancelBtn">cancel</button>
+```
+撤销操作的实现一般是给命令对象增加一个名为 unexecude 或者 undo 的方法，在该方法里执行 execute 的反向操作。在 command.execute 方法让小球开始真正运动之前，我们需要先记录小球的当前位置，在 unexecude 或者 undo 操作中，再让小球回到刚刚记录下的位置，代码如下：
+```js
+var ball = document.getElementById( 'ball' );
+var pos = document.getElementById( 'pos' );
+var moveBtn = document.getElementById( 'moveBtn' );
+var cancelBtn = document.getElementById( 'cancelBtn' );
+var MoveCommand = function( receiver, pos ){
+  this.receiver = receiver;
+  this.pos = pos;
+  this.oldPos = null;
+};
+MoveCommand.prototype.execute = function(){
+  this.receiver.start( 'left', this.pos, 1000, 'strongEaseOut' );
+  this.oldPos = this.receiver.dom.getBoundingClientRect()[ this.receiver.propertyName ];
+  // 记录小球开始移动前的位置
+};
+MoveCommand.prototype.undo = function(){
+  this.receiver.start( 'left', this.oldPos, 1000, 'strongEaseOut' );
+  // 回到小球移动前记录的位置
+};
+var moveCommand; 
+moveBtn.onclick = function(){
+  var animate = new Animate( ball );
+  moveCommand = new MoveCommand( animate, pos.value );
+  moveCommand.execute();
+};
+cancelBtn.onclick = function(){
+  moveCommand.undo(); // 撤销命令 
+}; 
+```
+撤销操作并不难，只是用一个变量记录下上一次操作时的值。
+
+## 撤消和重做
+上个代码示例只写了一个撤销的动作，但很多时候，我们需要撤销很多步，例如围棋游戏，可以一直悔棋下去。按照上面的代码示例来讲，其实就是把命令存储在列表中，然后倒叙执行这些命令的 undo 操作。
+
+然而，有些情况下这种思路是不合适的，Canvas 画图的程序中我们可以用命令去画线，却不能用撤销去删除线。这种情况下，可以擦除画布，然后用记录的正序列表命令重复执行操作就好了。
+
+书中的案例是作者写的h5版的 街头霸王 游戏，用命令模式用来实现播放录像功能，把用户在键盘的输入都封装成命令，执行过的命令将被存放到堆栈中。
+```html
+<button id="replay">播放录像</button> 
+```
+```js
+var Ryu = {
+  attack: function(){
+    console.log( '攻击' );
+  },
+  defense: function(){
+    console.log( '防御' );
+  },
+  jump: function(){
+    console.log( '跳跃' );
+  },
+  crouch: function(){
+    console.log( '蹲下' );
+  }
+}; 
+var makeCommand = function( receiver, state ){ // 创建命令
+  return function(){
+    receiver[ state ]();
+  }
+};
+
+var commands = {
+"119": "jump", // W
+"115": "crouch", // S
+"97": "defense", // A
+"100": "attack" // D
+};
+var commandStack = []; // 保存命令的堆栈
+document.onkeypress = function( ev ){
+var keyCode = ev.keyCode,
+command = makeCommand( Ryu, commands[ keyCode ] );
+if ( command ){
+  command(); // 执行命令
+  commandStack.push( command ); // 将刚刚执行过的命令保存进堆栈
+}
+};
+
+document.getElementById( 'replay' ).onclick = function(){ // 点击播放录像
+  var command;
+  while( command = commandStack.shift() ){ // 从堆栈里依次取出命令并执行
+    command();
+  }
+}; 
+```

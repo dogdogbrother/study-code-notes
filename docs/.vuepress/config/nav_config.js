@@ -48,9 +48,7 @@ module.exports = [
   },
   {
     text: '杂',
-    items: [
-      { text: 'Axure', link: '/miscellaneous/Axure/' },
-    ]
+    link: '/miscellaneous/'
   },
   { text: 'github', link: 'https://github.com/dogdogbrother/study-code-notes'},
 ]

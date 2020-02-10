@@ -53,7 +53,7 @@ let sidebar = {
   '/computer_basic/groceries/': require('./catalog/computer_basic/groceries'),
   '/computer_basic/basic/': require('./catalog/computer_basic/basic'),
   // 杂项
-  '/miscellaneous/Axure/': require('./catalog/miscellaneous/Axure'),
+  '/miscellaneous/': require('./catalog/miscellaneous/miscellaneous'),
 }
 
 for(let key  in sidebar){
