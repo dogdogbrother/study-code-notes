@@ -26,6 +26,7 @@ module.exports = [
       { text: 'TypeScript-axios', link: '/front_note/TypeScript-axios/' },
       { text: 'react-hooks', link: '/front_note/react-hooks/' },
       { text: 'vue2+', link: '/front_note/vue2/' },
+      { text: 'jest测试', link: '/front_note/jest/' }
     ]
   },
   {

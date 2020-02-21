@@ -32,7 +32,14 @@
 -ent 结尾形容词后缀
 1. intelligent 聪明的，有智慧的。intellig 是聪明的意思，加上ent变成了形容词。
 
+### y
+-y 形容词结尾
+1. windy 有风的。wind是风，+y 就是有风的。windy day 刮风的日子。
+
 ## 词发音
 
 ### pre
 present 的发音是呸sent或者是派sent，是因为pre的发音连读了。
+
+### trousers
+trousers 发音超ser死，是因为把 t 和 rou 的发音连读了。

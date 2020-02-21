@@ -17,5 +17,11 @@ module.exports = [
       { title: '组合多选框组件' },
       { title: 'Vue 的构造器,extend/$mount' },
     ]
-  }
+  },
+  {
+    title: 'vue2的日常',
+    children: [
+      { title: '复制专用' }
+    ]
+  },
 ]
