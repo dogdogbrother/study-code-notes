@@ -48,6 +48,8 @@ await Plaza.find({}, null, { lean:true })
 ```js
 await Comment.find({ id: {$in:arr} })
 ```
+>今天发现了新用法，假如我有个数组里面装的都是用户id`[1,2,3]`，我想查询到这三个用户，是可以直接这么写的`find({ id: [1,2,3]})`。  
+仔细一想好像上面写的不对。。`$in`是多余的。
 
 ### 查询collection集合中的数据总数
 本来是用`.connect()`方法,但是会报错`DeprecationWarning: collection.count is deprecated, and will be removed in a future version. Use Collection.countDocuments or Collection.estimatedDocumentCount instead`,改用`countDocuments`就好了.

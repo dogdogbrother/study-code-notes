@@ -3,6 +3,7 @@ let sidebar = {
   '/book_note/scopeCosuresJS1/': require('./catalog/book_note/scopeCosuresJS1'),
   '/book_note/scopeCosuresJS2/': require('./catalog/book_note/scopeCosuresJS2'),
   "/book_note/JavaScriptDesignPatterns/": require('./catalog/book_note/JavaScriptDesignPatterns'),
+  '/book_note/rxjs/': require('./catalog/book_note/rxjs'),
   // 后端
   '/buildStation/': require('./catalog/buildStation'),
   '/sever_note/python/': require('./catalog/sever_note/python'),
@@ -29,15 +30,7 @@ let sidebar = {
   ],
   '/sever_note/ssr/': require('./catalog/sever_note/ssr'),
   '/sever_note/nginx/': require('./catalog/sever_note/nginx'),
-  // 
-  '/cssSecret/': [
-    {
-      title: '第1章.背景与边框'
-    },
-    {
-      title: '第1章.形状'
-    },
-  ],
+
   // 前端
   '/front_note/basics-knowledge/': require('./catalog/front_note/basics-knowledge'),
   '/front_note/webpack4/': require('./catalog/front_note/webpack4'),
