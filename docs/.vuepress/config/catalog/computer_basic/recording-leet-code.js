@@ -8,6 +8,7 @@ module.exports = [
       { title: '914 卡牌分组' },
       { title: '922 按照奇偶排序' },
       { title: '7 整数反转' },
+      { title: '682 棒球比赛(栈)' }
     ]
   },
   {
@@ -17,6 +18,12 @@ module.exports = [
       { title: '17 电话号码的字母组合' },
       { title: '89 格雷编码' },
       { title: '6 Z字形变化' },
+    ]
+  },
+  {
+    title: '困难题',
+    children: [
+      { title: '85 最大矩形' }
     ]
   },
 ]

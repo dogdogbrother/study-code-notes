@@ -16,5 +16,14 @@ module.exports = [
     },
     {
       title: '钩子函数和作用域'
+    },
+    {
+      title: 'mock'
+    },
+    {
+      title: 'snapshot快照'
+    },
+    {
+      title: 'TDD下的react测试'
     }
   ]
