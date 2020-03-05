@@ -1,6 +1,6 @@
 module.exports = [
     {
-        title: 'linux和contos',
+        title: 'Nginx基础讲解',
     }
     // {
     //   title: '微博项目',

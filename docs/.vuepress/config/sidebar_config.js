@@ -38,6 +38,7 @@ let sidebar = {
   '/front_note/react-hooks/': require('./catalog/front_note/react-hooks'),
   '/front_note/vue2/': require('./catalog/front_note/vue2'),
   '/front_note/jest/': require('./catalog/front_note/jest.js'),
+  '/front_note/interview/': require('./catalog/front_note/interview.js'),
   // 跨平台
   '/cross_platform/flutter/': require('./catalog/cross_platform/flutter'),
   '/cross_platform/electron/': require('./catalog/cross_platform/electron'),

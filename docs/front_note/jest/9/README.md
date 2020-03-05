@@ -29,7 +29,7 @@ module.exports = {
 运行`npm test`.发现没问题,jest配置还是没问题的.这里大概介绍下jest的每个配置项的内容:
 ```json
 {
-    "collectCoverageForm": [ //  collect 收益
+    "collectCoverageForm": [ //  collect 收集
         "src/**/*.{js,jsx,ts,tsx}", //  我们在测试的过程中只测试src下的 js/jsx/ts/tsx 文件
         "!src/**/*.d.ts"    //  ! 的意思是不是测试 .d.ts 文件,这类文件一般是ts里面的类型生命文件,不是业务代码,没必要测试.
     ],
