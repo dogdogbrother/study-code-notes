@@ -50,3 +50,47 @@ const AlertComponent = Vue.extend({
   },
 });
 ```
+再通过`$mount`来进行手动渲染。
+```js
+const component = new AlertComponent().$mount();
+```
+`component`就是一个标准的Vue组件实例了，但是它仅仅是被渲染了，还没有挂载到节点上。
+>通过查看评论我们发现这种说辞是不对的，应该是------文档里是说组件被挂载到文档之外的元素，后续需要调用原生DOM api插入到文档中
+```js
+document.body.appendChild(component.$el);
+```
+当然，除了 body，你还可以挂载到其它节点上。`$mount` 也有一些快捷的挂载方式，以下两种都是可以的：
+```js
+// 在 $mount 里写参数来指定挂载的节点
+new AlertComponent().$mount('#app');
+// 不用 $mount，直接在创建实例时指定 el 选项
+new AlertComponent({ el: '#app' });
+```
+
+实现同样的效果，除了用 extend 外，也可以直接创建 Vue 实例，并且用一个 Render 函数来渲染一个 .vue 文件：
+```js
+import Vue from 'vue';
+import Notification from './notification.vue';
+
+const props = {};  // 这里可以传入一些组件的 props 选项
+
+const Instance = new Vue({
+  render (h) {
+    return h(Notification, {
+      props: props
+    });
+  }
+});
+
+const component = Instance.$mount();
+document.body.appendChild(component.$el);
+```
+这样既可以使用 .vue 来写复杂的组件（毕竟在 template 里堆字符串很痛苦），还可以根据需要传入适当的 props。渲染后，如果想操作 Render 的 Notification 实例，也是很简单的:
+```js
+const notification = Instance.$children[0];
+```
+因为 Instance 下只 Render 了 Notification 一个子组件，所以可以用 $children[0] 访问到。
+
+需要注意的是，我们是用 `$mount` 手动渲染的组件，如果要销毁，也要用 `$destroy` 来手动销毁实例，必要时，也可以用 `removeChild` 把节点从 DOM 中移除。
+
+>这样做有什么意义吗，后面的章节会提到他的用法。
