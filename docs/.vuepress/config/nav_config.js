@@ -24,6 +24,7 @@ module.exports = [
       { text: '前端基础', link: '/front_note/basics-knowledge/' },
       { text: 'webpack4', link: '/front_note/webpack4/' },
       { text: 'TypeScript-axios', link: '/front_note/TypeScript-axios/' },
+      { text: 'ts写爬虫和react', link: '/front_note/ts-reptile-react/' },
       { text: 'react-hooks', link: '/front_note/react-hooks/' },
       { text: 'vue2+', link: '/front_note/vue2/' },
       { text: 'jest测试', link: '/front_note/jest/' },
