@@ -16,6 +16,8 @@ module.exports = [
       { title: '组件的通信' },
       { title: '组合多选框组件' },
       { title: 'Vue 的构造器,extend/$mount' },
+      { title: '动态渲染vue组件' },
+      { title: '全局提示组件——$Alert' },
     ]
   },
   {

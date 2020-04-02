@@ -13,6 +13,15 @@ tsc -v
 ```
 2. 安装Visual Studio的TypeScript插件
 
+## 安装 ts-node
+因为 TS 文件不是运行在浏览器和node环境中的,每次我们都要编译成js后再执行,如果是开发阶段会很不方便.
+
+可以通过安装 ts-node 来直接运行ts文件进行调试.
+
+```ssh
+npm i -g ts-node
+```
+
 ## 第一个TypeScript程序
 >这里说明一下,后续基础的代码我都会用example的形式去写,代码在[github](https://github.com/dogdogbrother/TypeScript-example)上.
 
