@@ -18,6 +18,7 @@ rpm -ql nginx
 /etc/nginx/nginx.conf|配置文件|Nginx主配置文件
 /etc/nginx/conf.d/default.conf|配置文件|Nginx主配置文件
 **nginx.conf是Nginx启动时候加载的文件,在其内容不全时,会加载default.conf的内容进行补充.**
+>配置文件nginx.conf中，有一个include字段，后面值就是 *.conf 字段，代码执行到了这里就会加载运行其对应的 conf 配置文件。
 
 路径|类型|作用
 --|:--:|--|
@@ -27,7 +28,7 @@ rpm -ql nginx
 路径|类型|作用
 --|:--:|--|
 /var/log/nginx|目录|Nginx的日志目录
-**默认存放成功失败的日志.**
+**默认存放成功失败的日志的目录.**
 
 ## nginx.conf默认配置
 

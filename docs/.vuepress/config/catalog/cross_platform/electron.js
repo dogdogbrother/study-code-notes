@@ -3,9 +3,12 @@ module.exports = [
     title: '配置开发环境'
   },
   {
-    title: '第2章.介绍electron'
+    title: '进程和线程'
   },
   {
-    title: '第3章.介绍electron'
+    title: 'electron核心概念'
   },
+  {
+    title: '实现右键菜单'
+  }
 ]

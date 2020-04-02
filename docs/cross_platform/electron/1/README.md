@@ -83,3 +83,21 @@ yarn add cross-dev --save-env`
     "dev": "concurrently \"wait-on http://localhost:3000 && electron .\" \"cross-env BROWSER=none npm start\""
 }
 ```
+
+## 开发测试工具Devtron
+```ssh
+yarn add devtron --save-dev
+```
+官方提供的开发工具，也是集成在开发者工具里面的，可以看进程通话啊之类的很多信息。
+
+光安装没用,我们还要在 main.js 中使用一下才行:
+```js
+app.on('ready', () => {
+
+    require('devtron').install()
+    //  其他的代码
+    mainWindow.webContents.openDevTools()
+})
+```
+注意一下，`mainWindow.webContents.openDevTools()`是窗口实例提供的方法，这个可以让你在开启项目的时候自动打开f12.
+
