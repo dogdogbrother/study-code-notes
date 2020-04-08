@@ -50,8 +50,29 @@ module.exports = [
         title: '高级语法',
         children: [
             {
-                title: '类的装饰器 '
+                title: '类的装饰器'
+            },
+            {
+                title: '方法/访问器/属性/参数的装饰器'
+            },
+            {
+                title: '装饰器的小例子'
+            },
+            {
+                title: 'reflect-metadata'
             }
         ]
+    },
+    {
+        title: '利用装饰器去重构路由'
+    },
+    {
+        title: '多方法和中间件的装饰器'
+    },
+    {
+        title: '代码结构优化(爬虫部分结束)'
+    },
+    {
+        title: 'react前端项目'
     }
 ]

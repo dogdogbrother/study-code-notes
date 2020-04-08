@@ -3,7 +3,7 @@
 ## useState Hook
 其实没什么好说的,data而已.
 ```js
-impor React, { useState } from 'react'
+import React, { useState } from 'react'
 
 const LikeButton = () => {
   const [ like, setLike ] = useState(0)
@@ -42,7 +42,7 @@ componentDidUpdate() {
 
 我们用`useEffect`重写下这个需求(延续上一章的代码):
 ```js
-impor React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const LikeButton = () => {
   const [ like, setLike ] = useState(0)
@@ -64,7 +64,7 @@ const LikeButton = () => {
 
 但是通过上个例子我们知道,`useEffect`函数包含了全部的周期函数,那么清除动作是需要通过return回调函数来定义的:
 ```js
-impor React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const LikeButton = () => {
   const [ positions, setPositions ] = useState({x: 0, y: 0})

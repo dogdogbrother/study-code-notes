@@ -6,7 +6,7 @@
 
 先来自定义 Hook
 ```js
-impor React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const useMousePosition = () => {
   const [ positions, setPositions ] = useState({x: 0, y: 0})
