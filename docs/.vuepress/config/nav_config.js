@@ -29,6 +29,7 @@ module.exports = [
       { text: 'vue2+', link: '/front_note/vue2/' },
       { text: 'jest测试', link: '/front_note/jest/' },
       { text: '前端面试', link: '/front_note/interview/' },
+      { text: 'react-native', link: '/front_note/react-native/' },
     ]
   },
   {
