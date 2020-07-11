@@ -7,11 +7,17 @@ npx react-native init my-app --template react-native-template-typescript
 `
 >注意是TS项目。
 
+## 试着运行一下
+```shell
+npm run android
+```
+如果环境配置的没问题的话，就会自动打开安卓模拟器，并安装好APP后运行。
+
 ## 多环境
 
 我们有可能是会在本地环境，也有可能是在线上测试环境，也有可能是在正式环境，有可能每个环境的配置都不太一样。
 
-并且像是 `proscess.env.NODE_ENV === 'development` 的前端方在安卓或是IOS环境下也不能用,这里我们可以去 [js.coach](https://js.coach/) 去找到`react-native-config` 插件。
+并且像是 `proscess.env.NODE_ENV === 'development` 的前端方案在安卓或是IOS环境下也不能用,这里我们可以去 [js.coach](https://js.coach/) 去找到`react-native-config` 插件。
 
 ```shell
 npm i react-native-config --save

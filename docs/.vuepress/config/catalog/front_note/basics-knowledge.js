@@ -14,4 +14,10 @@ module.exports = [
   {
     title: 'number 数字',
   },
+  {
+    title: 'Chrome调试技巧',
+  },
+  {
+    title: 'npm技巧',
+  },
 ]

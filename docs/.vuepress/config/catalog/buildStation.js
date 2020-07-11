@@ -20,4 +20,7 @@ module.exports = [
   {
     title: '总结'
   },
+  {
+    title: '追补:enkins自动化'
+  },
 ]
