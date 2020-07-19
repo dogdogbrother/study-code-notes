@@ -184,7 +184,7 @@ import {Platform, StyleSheet} from 'react-native';
     },
   }}/>
 ```
-> **单词学习中**  
+> **单词小课堂**  
 **Interpolators**：窜改者，插入器  
 **Kit**：工具箱，装备  
 **hairline**：发际线，极细的线
