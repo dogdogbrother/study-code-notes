@@ -4,6 +4,8 @@ module.exports = [
     children: [
       { title: 'mysql' },
       { title: 'sequelize'},
+      { title: 'redis'},
+      { title: '注册'},
     ]
   },
   {
