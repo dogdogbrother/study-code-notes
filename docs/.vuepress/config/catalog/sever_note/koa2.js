@@ -6,6 +6,10 @@ module.exports = [
       { title: 'sequelize'},
       { title: 'redis'},
       { title: '注册'},
+      { title: '登陆'},
+      { title: '文件上传'},
+      { title: '微博外键和XSS过滤'},
+      { title: '广场和粉丝'},
     ]
   },
   {
