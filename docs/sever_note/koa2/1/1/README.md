@@ -12,6 +12,26 @@
 
 下载安装mysql,mysql workbench(可视化操作 )
 
+### 再安装 contos 
+[菜鸟教程里面linux下安装MySQL](https://www.runoob.com/mysql/mysql-install.html)
+
+照着一步一步敲就好了，还是挺详细的，不过有个问题是，workbench 远程连接 mysql 时失败，这个是因为 mysql 默认只允许本机访问。  
+解决方法我是照着 [这篇博客](https://blog.csdn.net/zhangchao19890805/article/details/52628925) 解决的。
+
+现在机子上`mysql -u root -p`命令打开客户端，连接数据库。
+```shell
+mysql> use mysql
+mysql> select t.host from user t where t.user='root';
++--------------+
+|  host        |
++--------------+
+|  localhost   |
++--------------+
+```
+我们使用该表的方法，执行 `update user set host='%' where user='root';`, 把 localhost 变成了 %。  
+`mysql>FLUSH   PRIVILEGES` 修改生效，再次连接没问题。
+
+
 ## 安装 workbench
 [workbench](http://49.233.185.168:3003/software/mysql-workbench-community-8.0.21-winx64.msi) 是操作数据库可视化工具,还可以进行一些简单鸡肋的汉化。  
 先下载[汉化文件](http://49.233.185.168:3003/software/main_menu.xml),然后打开 workbench 的安装目录，例如我的是`C:\Program Files\MySQL\MySQL Workbench 8.0 CE\data`,把文件放进去覆盖原来的就行了。

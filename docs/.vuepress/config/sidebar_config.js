@@ -49,6 +49,7 @@ let sidebar = {
   '/computer_basic/recording-leet-code/': require('./catalog/computer_basic/recording-leet-code'),
   '/computer_basic/groceries/': require('./catalog/computer_basic/groceries'),
   '/computer_basic/basic/': require('./catalog/computer_basic/basic'),
+  '/computer_basic/linux/': require('./catalog/computer_basic/linux'),
   // 杂项
   '/miscellaneous/': require('./catalog/miscellaneous/miscellaneous'),
 }

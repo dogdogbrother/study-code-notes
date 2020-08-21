@@ -1,6 +1,10 @@
 ## 安装windows下的 Redis
 [windows安装redis](https://www.runoob.com/redis/redis-install.html)
 
+## 安装 contos 下的 Redis
+简单的很，照着 [菜鸟教程](https://www.runoob.com/redis/redis-install.html) 复制就完事了。  
+最后 `pm2 start ./redis-server --name redis` 守护下就ok了。
+
 ## 安装 redis 工具来操作 redis
 ```shell
 npm i redis
