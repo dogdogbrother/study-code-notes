@@ -30,5 +30,20 @@ module.exports = [
   },
   {
     title: 'react和typescript'
-  }
+  },
+  {
+    title: '写一个小小的react',
+    children: [
+      { title: '前言' },
+      { title: 'react渲染字符'},
+      { title: '向react组件里面添加子组件'},
+      { title: 'class类组件的实现'},
+      { title: '组件带参数属性的实现'},
+      { title: '给组件添加事件'},
+      { title: '类组件的动态渲染'},
+      { title: '支持数组子元素和多种事件'},
+      { title: '给元素添加class和style和ref'}
+    ]
+  },
+
 ]
