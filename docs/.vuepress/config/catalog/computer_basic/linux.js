@@ -38,4 +38,13 @@ module.exports = [
   {
     title: '编译安装软件'
   },
+  {
+    title: 'ssh'
+  },
+  {
+    title: 'vim'
+  },
+  {
+    title: '网络和安全'
+  },
 ]
