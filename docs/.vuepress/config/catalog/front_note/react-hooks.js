@@ -53,6 +53,8 @@ module.exports = [
       { title: 'button组件的测试用例'},
       { title: 'menu组件的实现(1)'},
       { title: 'menu组件的实现(2)'},
+      { title: 'menu组件的测试用例'},
+      { title: 'stroybook组件文档'},
     ]
   },
 ]

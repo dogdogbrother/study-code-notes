@@ -12,7 +12,7 @@ menu 上有 defaultIndex 和 defaultOpenSubMenus，这就需要 item 在渲染�
 
 ```tsx
 // menu.tsx
-import React, { createContext } from 'react'
+import React, { useState, createContext } from 'react'
 interface IMenuContext {
   index: string;
   onSelect?: SelectCallback;
@@ -22,6 +22,13 @@ interface IMenuContext {
 export const MenuContext = createContext<IMenuContext>({index: '0'})
 const Menu: React.FC<MenuProps> = (props) => {
 //...
+  const [ currentActive, setActive ] = useState(defaultIndex)
+  const handleClick = (index: string) => {
+    setActive(index)
+    if(onSelect) {
+      onSelect(index)
+    }
+  }
   const passedContext: IMenuContext = {
     index: currentActive ? currentActive : '0',
     onSelect: handleClick,
@@ -43,11 +50,30 @@ const Menu: React.FC<MenuProps> = (props) => {
 // menuItem
 import React, { useContext } from 'react'
 import { MenuContext } from './menu'
+import classNames from 'classnames'
 
+// 。。。
 const MenuItem: React.FC<MenuItemProps> = (props) => {
   const context = useContext(MenuContext)
-  console.log(context.index)
-  context.onSelect()
+  const classes = classNames('menu-item', className, {
+    'is-disabled': disabled,
+    'is-active': context.index === index
+  })
+  const handleClick = () => {
+    if (context.onSelect && !disabled && (typeof index === 'string')) {
+      context.onSelect(index)
+    }
+  }
+  return (
+    <li className={classes} style={style} onClick={handleClick}>
+      {children}
+    </li>
+  )
 }
 ```
+对于 menu 和 menuItem 上关于 index 和 defaultIndex 和点击切换 index，或是执行回调函数(返回index)，都是通过 Context 去调度的，认真看下代码就能清楚逻辑。
 
+## subMenu
+没有什么特殊难度，有几个 TS 的点说明下:
+1. 事件中的 event 对象的类型是 `React.MouseEvent`。
+2. `React.Children.map` 下的 child 的类型需要强制断言下才能拿到 `displayName` 属性，`child as FunctionComponentElement<MenuItemProps>`
