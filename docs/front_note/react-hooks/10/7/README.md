@@ -13,7 +13,7 @@ npx -p @storybook/cli sb init
 ## 观察和使用
 
 我们先看看官网的demo  
-![storybook](../../../../public/react-hooks/storybook1.jpg)
+![storybook](../../../../public/react-hooks/storybook1.png)
 
 再看看 demo 代码,用注释讲解配置:
 ```tsx
@@ -104,11 +104,11 @@ export const Button: React.FC<ButtonProps> = ({
 * interface 属性为必填项时table中也会是必填。
 * 当属性为字符自变量时，`'small' | 'medium' | 'large'`，此属性为select，可以操作。
 * 当属性为 boolean 时，会有个开关供你操作。
-
+ 
 ## addon
 addon 就是 storybook 的插件，像 **showCode** 这种功能都是addon的功劳。
 
 ## 后语
-上面的demo只是 storybook 非常基础的功能，事实上，包括怎么显示文件都有不同的方法，也可以自己配置 config 文件更加定制化。
+上面的demo只是 storybook 非常基础的功能，事实上，怎么显示文件都有不同的方法，也可以自己配置 config 文件更加定制化或者全局化。
 
 可惜 storybook 没有比较好的中文支持，看官网文档吃力啊。
