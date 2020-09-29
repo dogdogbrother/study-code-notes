@@ -172,13 +172,89 @@ axios.post(action, formData, {  // action 是上传地址，也是props传进来
     ...headers, //传进来的headers设置给弄上
     'Content-Type': 'multipart/form-data' // 必须要设置的，告知是文件格式提交
   },
-  withCredentials,
+  withCredentials,  // 值为boolean
   onUploadProgress: (e) => {  // axios的钩子函数，反馈
     let percentage = Math.round((e.loaded * 100) / e.total) || 0;   // 
     if (percentage < 100) {
-      
+      // 写 进度条逻辑
     }
   }
 }).then(resp => {}
 ```
+### 拖拽功能 
+其实就是写了个div，添加了 onDrop，onDragLeave 和 onDragOver事件。
+```tsx
+import React, { FC, useState, DragEvent } from 'react'
+import classNames from 'classnames'
 
+interface DraggerProps {
+  onFile: (files: FileList) => void;
+}
+
+export const Dragger: FC<DraggerProps> = (props) => {
+  const { onFile, children } = props
+  const [ dragOver, setDragOver ] = useState(false)
+  const handleDrop = (e: DragEvent<HTMLElement>) => {
+    e.preventDefault()
+    setDragOver(false)
+    onFile(e.dataTransfer.files)
+  }
+  const handleDrag = (e: DragEvent<HTMLElement>, over: boolean) => {
+    e.preventDefault()
+    setDragOver(over)
+  }
+  return (
+    <div 
+      onDragOver={e => { handleDrag(e, true)}}
+      onDragLeave={e => { handleDrag(e, false)}}
+      onDrop={handleDrop}
+    >
+      {children}
+    </div>
+  )
+}
+
+export default Dragger;
+```
+> 类数组的文件类型`FileList`,拖拽事件的event类型为 `DragEvent<HTMLElement>`。
+
+### 测试用例
+关于拖拽那里还挺复杂的，我估计平时也用不到，也懒得写了，写一下关于axios的问题。测试用例是没有办法调用组件内部的axios的(webpack都没启动)。
+
+解法方法是把 `axios` mock掉,也就是当组件执行 axios 的时候走拦截逻辑，jest提供了此功能。
+```tsx
+import axios from 'axios'
+jest.mock('axios')
+// 如果是js的话是不需要这样的，直接测试组件直接调用axios.post就行了，但是ts不行，找不到属性报错呀！！
+const mockedAxios = axios as jest.Mocked<typeof axios>
+describe('test upload component', () => {
+  it('upload process should works fine', async () => {
+    // ...
+    // mock axios返回值
+    mockedAxios.post.mockResolvedValue({'data': 'cool'})
+    // 当回调函数执行时，是否有我们mock的数据，有的话测试通过。
+    expect(testProps.onSuccess).toHaveBeenCalledWith('cool', testFile)
+  })
+})
+```
+
+## 防抖函数
+input change时的ajax防抖函数,是利用 useEffect 返回值是清除的特性。
+```tsx
+import { useState, useEffect } from 'react'
+
+function useDebounce(value: any, delay = 300) {
+  const [debouncedValue, setDebouncedValue] = useState(value)
+  useEffect(() => {
+    const handler = window.setTimeout(() => {
+      setDebouncedValue(value)
+    }, delay)
+    return () => {
+      clearTimeout(handler)
+    }
+  }, [value, delay])
+  return debouncedValue
+}
+
+export default useDebounce;
+```

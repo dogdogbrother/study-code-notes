@@ -1,6 +1,6 @@
 module.exports = [
     {
-        title: '前端基础'
+        title: '前端概念总结'
     },
     {
         title: '工具框架相关'
