@@ -42,6 +42,8 @@ let sidebar = {
   '/front_note/jest/': require('./catalog/front_note/jest.js'),
   '/front_note/interview/': require('./catalog/front_note/interview.js'),
   '/front_note/write-code/': require('./catalog/front_note/write-code.js'),
+  '/front_note/optimization/': require('./catalog/front_note/optimization.js'),
+  
   // 跨平台
   '/cross_platform/flutter/': require('./catalog/cross_platform/flutter'),
   '/cross_platform/electron/': require('./catalog/cross_platform/electron'),

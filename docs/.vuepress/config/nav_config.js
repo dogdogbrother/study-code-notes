@@ -32,6 +32,7 @@ module.exports = [
       { text: '前端面试', link: '/front_note/interview/' },
       { text: 'react-native', link: '/front_note/react-native/' },
       { text: '手写代码', link: '/front_note/write-code/' },
+      { text: '性能优化', link: '/front_note/optimization/' },
     ]
   },
   {
