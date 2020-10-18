@@ -20,4 +20,7 @@ module.exports = [
   {
     title: 'npm技巧',
   },
+  {
+    title: 'canvas画动画时钟',
+  },
 ]

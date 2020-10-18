@@ -14,10 +14,10 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>自定义标签</title>
+    <title>自定义标签</title>
 </head>
 <body>
-<word-count text="1222"></word-count>
+    <word-count text="1222"></word-count>
 </body>
 </html>
 <script>
@@ -73,7 +73,60 @@ setTimeout(() => {
 ```
 
 ### 4. 常见的http缓存策略(非cookie)
+两个概念，协商缓存和强缓存。  
+三个关键字,Etag、Cache-Control、Expires。
+#### 协商缓存
+假如我们重新申请index.html，请求头里面会带上上次请求的 **Etag**，服务端收到后会对比下本地的，没有改动的话就304，浏览器从本地拿资源。
+#### 强缓存
+1. 如果请求头携带 **Cache-Control** 属性，则查看`s-maxage`或者`max-age`值是否过期，未过期就从本机里面拿。
+2. 如果请求头没有 **Cache-Control**，则看 **Expires** 的时间是否过期。注意的是，**Cache-Control** 的优先级比 **Expires** 高。
+#### 前端能做的缓存优化
+可以在webpack中配置 contentHash，只有当内容改变的时候才会更新文件名。
 
-### 画个三角形的canvas,颜色为绿色.
+#### service worker离线缓存
+**service worke** 可以拦截http请求，响应的内容的逻辑可以写在本地的js文件中。
 
+### 5. 画个三角形的canvas,颜色为绿色.
+可以看下[API](https://www.w3school.com.cn/tags/html_ref_canvas.asp),实现流程如下:
+1. 创建 **canvas** 元素，并在js中获取到。
+2. 拿到对应的上下文，`const ctx = dom.getContext('2d')`。后续我们操作 **ctx** 即可。
+3. `beginPath()`开启一条线路，用 `lineTo(坐标, 坐标)` 画出三条线，然后设置 `fillStyle` 为绿色，在用 `fill()` 填充就ok了。
+
+全部代码:
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>canvas画绿色三角形</title>
+    <style type="text/css">
+      div {
+        text-align: center;
+        margin-top: 25px;
+      }
+      #clock {
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <canvas id="clock" height="200px" width="200px"></canvas>
+    </div>
+  </body>
+  <script type="text/javascript">
+    const dom = document.getElementById('clock')
+    const ctx = dom.getContext('2d')
+    const width = ctx.canvas.width
+    const height = ctx.canvas.height
+    const r = width/2
+    ctx.beginPath()
+    ctx.lineTo(200,0)
+    ctx.lineTo(0,200)
+    ctx.lineTo(0,0)
+    ctx.fillStyle = 'green'
+    ctx.fill()
+  </script>
+</html>
+```
 ### <span>点击登录</span> 手写第三方登录流程
