@@ -3,13 +3,13 @@
 
 珠峰培训的公开课里复刻的promise比较全面，缺点是有点复杂，这里是用的掘金的文章 [前面面试常见的手写功能](https://juejin.im/post/6873513007037546510#heading-14) 里面的 promise，简陋一些，也简单一些。
 
-### 思考下手写个 Promise 的需求点:
+## 思考下手写个 Promise 的需求点:
 1. Promise 是 new 出来的，肯定是个class类，要有 constructor，来处理new时传进去的函数参数,要有 then 和 catch 属性。
 2. Promise 维持3种状态，pending 、fulfilled 、reject，初始是 pending。根据 resolve 还是 reject 转换状态，但是需要注意的是，状态不能逆转变。
 3. Promise 的函数参数中是可以返回新的 Promise，这样就能无限的 `.then` 或者 `.catch`,这功能的思路其实是有个队列来存储状态。
 4. Promise 是可以多次非链式调用 `.then`。意思是可以在 then 里面写多段代码，也可以把这几个代码拿出来写在多个平级 then 里面，效果是一样的。
 
-### 直接看代码
+## 直接看代码
 ```tsx
 class MyPromise {
   constructor(func) {
@@ -74,7 +74,7 @@ class MyPromise {
   } 
 }
 ``` 
-### 测试下
+## 测试下
 ```js
 new MyPromise((resolve) => {
   setTimeout(() => {
@@ -96,7 +96,7 @@ new MyPromise((resolve) => {
 ```
 亲测没问题的。
 
-### 总结
+## 总结
 这是个简易的promis，而且我也对原版文章里面的内容作了一部分的改动，例如我少了 bind 指定this，少了 timeout。
 
 即使是简易的，也是稍稍有点难理解，其中发布订阅的逻辑是简单的，但是递归promise 和递归then 的操作还是挺精妙的。
