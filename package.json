@@ -2,5 +2,7 @@
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs"
-  }
+  },
+  "description": "我的笔记",
+  "private": true
 }
