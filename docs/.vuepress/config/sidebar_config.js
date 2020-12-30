@@ -4,6 +4,7 @@ let sidebar = {
   '/book_note/scopeCosuresJS2/': require('./catalog/book_note/scopeCosuresJS2'),
   "/book_note/JavaScriptDesignPatterns/": require('./catalog/book_note/JavaScriptDesignPatterns'),
   '/book_note/rxjs/': require('./catalog/book_note/rxjs'),
+  '/book_note/mysql/': require('./catalog/book_note/mysql'),
   // 后端
   '/buildStation/': require('./catalog/buildStation'),
   '/sever_note/python/': require('./catalog/sever_note/python'),

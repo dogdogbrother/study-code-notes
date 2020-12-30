@@ -6,7 +6,8 @@ module.exports = [
       { text: '你不知道的JS(中)', link: '/book_note/scopeCosuresJS2/' },
       { text: '你不知道的JS(下)', link: '/book_note/scopeCosuresJS3/' },
       { text: 'JS设计模式与开发实践', link: '/book_note/JavaScriptDesignPatterns/' },
-      { text: '深入浅出rxjs', link: '/book_note/rxjs/' }
+      { text: '深入浅出rxjs', link: '/book_note/rxjs/' },
+      { text: 'Mysql是怎样运行的', link: '/book_note/mysql/' },
     ]
   },
   {
