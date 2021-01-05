@@ -28,5 +28,13 @@ module.exports = [
       { title: '问题与答案模块' },
       { title: '其他的一些杂事' },
     ]
+  },
+  {
+    title: 'egg旅游项目',
+    children: [
+      { title: 'egg和koa的不同' },
+      { title: 'egg下使用mysql' },
+      { title: '创建个用户model' }
+    ]
   }
 ]
