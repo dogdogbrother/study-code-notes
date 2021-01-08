@@ -34,7 +34,9 @@ module.exports = [
     children: [
       { title: 'egg和koa的不同' },
       { title: 'egg下使用mysql' },
-      { title: '创建个用户model' }
+      { title: '创建个用户model' },
+      { title: '写个用户登录功能' },
+      { title: 'jwt' }
     ]
   }
 ]
