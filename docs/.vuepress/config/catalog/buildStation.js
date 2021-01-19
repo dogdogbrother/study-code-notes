@@ -23,4 +23,7 @@ module.exports = [
   {
     title: '追补:enkins自动化'
   },
+  {
+    title: '升级版建站'
+  }
 ]
