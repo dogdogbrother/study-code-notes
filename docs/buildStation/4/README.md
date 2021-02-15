@@ -49,13 +49,13 @@ vim /etc/nginx/nginx.conf
 nginx的配置其实并不复杂,我个人server内容代码片段的代码如下:
 ```
 server {
-      listen  3001;
-      location / {
-          root        /var/www/study-code-notes/docs/.vuepress/dist;
-          index       index.html index.htm;
-          try_files   $uri $uri/ /index.html;
-      }
-  }
+    listen  3001;
+    location / {
+        root        /var/www/study-code-notes/docs/.vuepress/dist;
+        index       index.html index.htm;
+        try_files   $uri $uri/ /index.html;
+    }
+}
 ```
 > `try_files  $uri $uri/ /index.html;`这段代码是为了处理现在前端路由history的问题,如果是#的路由则不用配置.
 

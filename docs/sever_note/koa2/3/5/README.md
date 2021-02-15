@@ -19,7 +19,7 @@ Docker操作说明
 镜像操作
 1，拉取镜像
 
-// http://hub.daocloud.io/ 本次课程采用的镜像仓库
+// http://hub.daocloud.io/ 本次采用的镜像仓库
 docker pull 镜像名称
 2，查看本地所有镜像
 
@@ -108,7 +108,7 @@ systemctl daemon-reload
 systemctl restart docker
 6，安装mysql
 docker pull daocloud.io/library/mysql:8.0.20
-
+be0dbf01a0f3
 # 运行mysql
 docker run -d -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=abc123456 镜像id
 7，安装redis
