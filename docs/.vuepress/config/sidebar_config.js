@@ -31,6 +31,7 @@ let sidebar = {
   ],
   '/sever_note/ssr/': require('./catalog/sever_note/ssr'),
   '/sever_note/nginx/': require('./catalog/sever_note/nginx'),
+  '/sever_note/java/': require('./catalog/sever_note/java'),
 
   // 前端
   '/front_note/basics-knowledge/': require('./catalog/front_note/basics-knowledge'),

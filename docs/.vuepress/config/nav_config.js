@@ -45,6 +45,7 @@ module.exports = [
       { text: 'python', link: '/sever_note/python/' },
       { text: 'koa2', link: '/sever_note/koa2/' },
       { text: 'Nginx', link: '/sever_note/nginx/' },
+      { text: 'java', link: '/sever_note/java/' },
     ]
   },
   {
