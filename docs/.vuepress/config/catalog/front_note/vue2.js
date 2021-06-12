@@ -26,4 +26,10 @@ module.exports = [
       { title: '复制专用' }
     ]
   },
+  {
+    title: '手写vue-cli3',
+    children: [
+      { title: '创建 my-cli 命令' }
+    ]
+  },
 ]
